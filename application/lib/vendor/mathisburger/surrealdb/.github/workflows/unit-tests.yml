@@ -1,0 +1,25 @@
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  unit-test:
+    runs-on: ubuntu-latest
+    services:
+      surrealdb:
+        image: ghcr.io/mathisburger/surrealdb-docker-service:latest
+        ports:
+          - 127.0.0.1:8000:8000
+    steps:
+      - uses: actions/checkout@v3
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+      - uses: ramsey/composer-install@v2
+        with:
+          composer-options: "--dev"
+      - name: Run tests
+        run: vendor/bin/phpunit -c phpunit.xml tests

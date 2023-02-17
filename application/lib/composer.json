@@ -1,0 +1,5 @@
+{
+    "require": {
+        "mathisburger/surrealdb": "^1.0"
+    }
+}
