@@ -11,7 +11,7 @@ class Main extends Model {
 	// 	return $result;
 	// }
 	public function getNews(){
-		return $this->db->row('SELECT * from posts');
+		return $this->db->query('select name, value, author.nick from items')[0]['result'];
 	}
     
 }

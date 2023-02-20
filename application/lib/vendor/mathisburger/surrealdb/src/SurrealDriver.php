@@ -156,9 +156,9 @@ class SurrealDriver
      *
      * @throws BadOpcodeException If the websocket connection failed
      */
-    public function query(string $sql, array $vars): mixed
+    public function query(string $sql): mixed
     {
-        return $this->send('query', [$sql, $vars])['result'];
+        return $this->send('query', [$sql])['result'];
     }
 
     /**

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html><head></head>
+<html><head>
+	<link rel="stylesheet" href="style.css">
+</head>
 <body>
 <header>
 <form name="search" action="#" method="get">
@@ -31,13 +33,11 @@
 	</ul>
 </nav>
     </div>
-    <div id="heading">
-	<h1>ABOUT US</h1>
-</div>
 <?php foreach ($news as $post) : ?>
-    <div>
-        <h1><?php echo $post["name"] ?></h1>
-        <p><?php echo $post["text"] ?></p>
+    <div class ='item'>
+        <a><?php echo $post["name"]?></a>
+        <p><?php echo $post["value"]?></p>
+		<a>author <?php echo $post["author"]['nick']?></a>
     </div>
 <?php endforeach; ?>
 </body>

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit89b9fcd75eb702cd4e69b263d8b04f4e
+class ComposerStaticInit7c2c11568795f626161fa6696ccaef5f
 {
     public static $prefixLengthsPsr4 = array (
         'W' => 
@@ -33,8 +33,8 @@ class ComposerStaticInit89b9fcd75eb702cd4e69b263d8b04f4e
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
         'MathisBurger\\SurrealDb\\' => 
         array (
@@ -54,10 +54,10 @@ class ComposerStaticInit89b9fcd75eb702cd4e69b263d8b04f4e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit89b9fcd75eb702cd4e69b263d8b04f4e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit89b9fcd75eb702cd4e69b263d8b04f4e::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit89b9fcd75eb702cd4e69b263d8b04f4e::$fallbackDirsPsr4;
-            $loader->classMap = ComposerStaticInit89b9fcd75eb702cd4e69b263d8b04f4e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit7c2c11568795f626161fa6696ccaef5f::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit7c2c11568795f626161fa6696ccaef5f::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit7c2c11568795f626161fa6696ccaef5f::$fallbackDirsPsr4;
+            $loader->classMap = ComposerStaticInit7c2c11568795f626161fa6696ccaef5f::$classMap;
 
         }, null, ClassLoader::class);
     }
