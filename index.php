@@ -9,7 +9,10 @@ Autoloader::register();
 session_start();
 
 Config::init();
-
+try{
 $debug = new Debug();
 $router = new Router();
 $router->run();
+        } catch (Throwable $th) {
+            var_dump($th);
+        }

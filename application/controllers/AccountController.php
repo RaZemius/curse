@@ -8,7 +8,6 @@ use application\lib\Debug;
 class AccountController extends Controller
 {
     function indexAction(){
-
         $data = $this->model->getuser_prof(1);
         $this->view->render("page of ".$data[1]);
     }
