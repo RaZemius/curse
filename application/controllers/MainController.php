@@ -10,7 +10,15 @@ class MainController extends Controller
     function indexAction()
     {
         $news = $this->model->getNews();
-        var_dump($news);
         $this->view->render("Главная", ["news" => $news]);
     }
+    function searchAction($str){
+        if ($str != '')
+        {$data = $this->model->selectnews($str);}
+        else
+        {$data = $this->model->getNews();}
+        $this->view->render("поиск", ["data" => $data]);
+    }
+    function updateAction()
+    {}
 }

@@ -13,7 +13,7 @@ class Account extends Model
     // }
     public function getuser_prof($id)
     {
-        return $this->db->row('SELECT * from user where id = '.$id.'');
+        return $this->db->query('SELECT * from users');
     }
     public function register(){}
     public function eddit(){}

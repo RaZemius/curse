@@ -7,6 +7,21 @@
 <form name="search" action="#" method="get">
 	<input type="text" name="q" placeholder="Search"><button type="submit">GO</button>
 </form>
+<script>
+	let target = document.querySelector('input');
+	target.addEventListener('keypress',run);
+	function httpget(url){
+		var req = new XMLHttpRequest();
+		req.open("GET", url, false);
+		req.send(null);
+		return req.responseText;
+	}
+	function run(){
+		let val = '';
+		val = '/webalizer/?q='+target.innerHTML+'#';
+		console.log(httpget(val));
+	}
+</script>
 </header>
 <header>
 	<a href="/"><img src="" alt="Whitesquare logo"></a>
@@ -19,29 +34,20 @@
 		<section></section>
 	</div>
 	<footer></footer>
-    <div>
-    <nav>
-	<ul class="top-menu">
-		<li><a href="/home/">HOME</a></li>
-		<li class="active">ABOUT US</li>
-		<li><a href="/services/">SERVICES</a></li>
-		<li><a href="/partners/">PARTNERS</a></li>
-		<li><a href="/customers/">CUSTOMERS</a></li>
-		<li><a href="/projects/">PROJECTS</a></li>
-		<li><a href="/careers/">CAREERS</a></li>
-		<li><a href="/contact/">CONTACT</a></li>
-	</ul>
-</nav>
-</div>
 <div class = items>
-<?php foreach ($news as $post) : ?>
+<?php  if ($data['status'] == 'OK' && count($data['result']) != 0) {
+    foreach($data['result'] as $post):?>
+<?php //foreach ($list as $post) : ?>
     <div class ='item'>
         <a><?php echo $post["name"]?></a></br>
         <a><?php echo $post["value"]?></a></br>
 		<a>author <?php echo $post["author"]['nick']?></a>
     </div>
-<?php endforeach; ?>
-
+<?php //endforeach;
+ endforeach;
+} else {
+	echo('oops nothing founded');
+}?>
 </div>
 </body>
 </html>

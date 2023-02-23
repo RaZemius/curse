@@ -1,0 +1,12 @@
+body {
+    margin: 0;
+    background-color: rgb(58, 58, 58);
+
+}
+.items{
+    display: flex;
+}
+.item{
+    background-color: aliceblue;
+    margin: 2px;
+}

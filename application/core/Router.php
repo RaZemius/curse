@@ -1,8 +1,14 @@
 <?php
 
 namespace application\Core;
+
+use application\controllers\MainController;
 use application\lib\Config;
 use application\core\View;
+
+
+use application\core\Model;
+use application\models\Main;
 
 class Router
 {
@@ -12,7 +18,6 @@ class Router
 	public function __construct()
 	{
 		$arr = include "application/config/routes.php";
-		
 		foreach ($arr as $key => $val) {
 			$this->add($key, $val);
 		}
@@ -46,25 +51,32 @@ class Router
 
 	public function run()
 	{
-		if ($this->match()) {
-			$path = 'application\controllers\\' . ucfirst($this->params['controller']) . 'Controller';
-			if (class_exists($path)) {
-				$action = $this->params['action'] . "Action";
-				if (method_exists($path, $action)) {
-					$controller = new $path($this->params);
-					$controller->$action();
-				}
-				else {
-					//echo 'Не найден такой action: ' . $action;
-					View::errorCode(404);
-				}
-			} else {
-				//echo 'Не найден такой контроллер: ' . $path;
-				View::errorCode(404);
-			}
-		} else {
-			//echo 'Маршрут не найден';
-			View::errorCode(404);
-		}
-	}
+    if ($this->match()) {
+        $path = 'application\controllers\\' . ucfirst($this->params['controller']) . 'Controller';
+        if (class_exists($path)) {
+            $action = $this->params['action'] . "Action";
+            if (method_exists($path, $action)) {
+                var_dump($path);
+                var_dump($action);
+                $controller = new $path($this->params);
+                $controller->$action();
+            } else {
+                //echo 'Не найден такой action: ' . $action;
+                View::errorCode(404);
+            }
+        } else {
+            //echo 'Не найден такой контроллер: ' . $path;
+            View::errorCode(404);
+        }
+    } else {
+        $res = null;
+        if (1 == preg_match('/(\?q=).*?$/', $_SERVER['REQUEST_URI'], $res)) {
+            $res = trim($res[0], "?q=");
+            $this->routes = ['controller'=>'main','action'=> 'search'];
+            $path = 'application\controllers\MainController';
+            $class = new $path($this->routes);
+            $class->searchAction($res);
+        }
+    }
 }
+	}
