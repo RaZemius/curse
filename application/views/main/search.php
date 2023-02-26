@@ -8,25 +8,6 @@
 	<input type="text" name="q" placeholder="Search">
 	<button type="submit">GO</button>
 </form>
-<script>
-	let target = document.querySelector('input');
-	target.addEventListener('keyup',run);
-	function httpget(url, data){
-		var req = new XMLHttpRequest();
-		req.open("POST", url, false);
-		req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		req.send(data);
-		return req.responseText;
-	}
-	function run(){
-		let val = '';
-		val = '/webalizer/search'
-		console.log(target.value)
-		data = JSON.stringify({search : target.value});
-		//val = '/webalizer/?q='+target.value+'#';
-		console.log(httpget(val, data));
-	}
-</script>
 </header>
 <header>
 	<a href="/"><img src="" alt="Whitesquare logo"></a>
@@ -44,8 +25,8 @@
     foreach($data['result'] as $post):?>
 <?php //foreach ($list as $post) : ?>
     <div class ='item'>
-        <a><?php echo $post["name"]?></a></br>
-        <a><?php echo $post["value"]?></a></br>
+        <a><?php echo $post["name"]?></a>
+        <a><?php echo $post["value"]?></a>
 		<a>author <?php echo $post["author"]['nick']?></a>
     </div>
 <?php //endforeach;
@@ -54,5 +35,25 @@
 	echo('oops nothing founded');
 }?>
 </div>
+
+<script>
+	let target = document.querySelector('input');
+	target.addEventListener('keyup',run);
+	function httpget(url, data){
+		var req = new XMLHttpRequest();
+		req.open("POST", url, false);
+		req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		req.send(data);
+		return req.responseText;
+	}
+	function run(){
+		let val = '';
+		val = '/webalizer/search'
+		console.log(target.value)
+		data = JSON.stringify({search : target.value});
+		//val = '/webalizer/?q='+target.value+'#';
+		document.querySelector('.items').innerHTML = httpget(val, data);
+	}
+</script>
 </body>
 </html>
