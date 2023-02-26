@@ -5,21 +5,26 @@
 	<link rel="stylesheet" href="application/views/main/style.css">
 <header>
 <form name="search" action="#" method="get">
-	<input type="text" name="q" placeholder="Search"><button type="submit">GO</button>
+	<input type="text" name="q" placeholder="Search">
+	<button type="submit">GO</button>
 </form>
 <script>
 	let target = document.querySelector('input');
-	target.addEventListener('keypress',run);
-	function httpget(url){
+	target.addEventListener('keyup',run);
+	function httpget(url, data){
 		var req = new XMLHttpRequest();
-		req.open("GET", url, false);
-		req.send(null);
+		req.open("POST", url, false);
+		req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		req.send(data);
 		return req.responseText;
 	}
 	function run(){
 		let val = '';
-		val = '/webalizer/?q='+target.innerHTML+'#';
-		console.log(httpget(val));
+		val = '/webalizer/search'
+		console.log(target.value)
+		data = JSON.stringify({search : target.value});
+		//val = '/webalizer/?q='+target.value+'#';
+		console.log(httpget(val, data));
 	}
 </script>
 </header>

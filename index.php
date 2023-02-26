@@ -12,6 +12,7 @@ Config::init();
 try{
 $debug = new Debug();
 $router = new Router();
+//var_dump($_POST);
 $router->run();
         } catch (Throwable $th) {
             var_dump($th);

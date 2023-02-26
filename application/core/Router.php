@@ -56,8 +56,6 @@ class Router
         if (class_exists($path)) {
             $action = $this->params['action'] . "Action";
             if (method_exists($path, $action)) {
-                var_dump($path);
-                var_dump($action);
                 $controller = new $path($this->params);
                 $controller->$action();
             } else {
@@ -71,6 +69,7 @@ class Router
     } else {
         $res = null;
         if (1 == preg_match('/(\?q=).*?$/', $_SERVER['REQUEST_URI'], $res)) {
+            $path = trim($_SERVER['REQUEST_URI'], $res[0]);
             $res = trim($res[0], "?q=");
             $this->routes = ['controller'=>'main','action'=> 'search'];
             $path = 'application\controllers\MainController';
@@ -79,4 +78,4 @@ class Router
         }
     }
 }
-	}
+}

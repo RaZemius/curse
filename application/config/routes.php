@@ -6,6 +6,11 @@ return [
 		'controller' => 'main',
 		'action' => 'index'
 	],
+	
+	'/search'=>[
+		'controller'=>'main',
+		'action'=>'update'
+	],
 	'/profile' => [
 		'controller' => 'account',
 		'action' => 'index'
