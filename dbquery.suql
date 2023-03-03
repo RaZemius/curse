@@ -21,6 +21,8 @@ define field reg_time on table customers;
 define field item on table customers type array;
 define field item.* on table customers type string;
 
+define table tokens schemafull;
+define field user on table tokens;
 
 COMMIT TRANSACTION;
 begin transaction;

@@ -11,11 +11,16 @@ return [
 		'controller'=>'main',
 		'action'=>'update'
 	],
+	
+	'/logincheck'=>[
+		'controller'=>'account',
+		'action'=>''
+	],
 	'/profile' => [
 		'controller' => 'account',
 		'action' => 'index'
 	],
-	'/profile/login'=>[
+	'/login'=>[
 		'controller'=>'account',
 		'action'=>'login'
 	],

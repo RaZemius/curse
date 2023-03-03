@@ -34,7 +34,7 @@
 </nav>
 </div>
 <div class = items>
-<?php foreach ($news as $post) : ?>
+<?php foreach ($news['result'] as $post) : ?>
     <div class ='item'>
         <a><?php echo $post["name"]?></a></br>
         <a><?php echo $post["value"]?></a></br>

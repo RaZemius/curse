@@ -75,7 +75,8 @@ class Router
             $path = 'application\controllers\MainController';
             $class = new $path($this->routes);
             $class->searchAction($res);
-        }
+        } else
+        {View::errorCode(404);}
     }
 }
 }
