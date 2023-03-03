@@ -27,7 +27,7 @@ class AccountController extends Controller
                 setcookie('user', $_POST['login'], null);
                 setcookie('token', $this->model->setToken(), null);
             } else
-            {}
+            {$this->view->render('вход');}
         }
         else
         {$this->view->render('Вход');}

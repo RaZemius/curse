@@ -28,7 +28,11 @@ class Account extends Model
     }
     public function checkToken($token)
     {
-        
+        $res = $this->db->query('select token.id from tokens:'.$token)['result'];
+        if ($res['token'] == $token)
+        {return true;}
+        else
+        {return false;}
     }
     public function setToken($user_id)
     {
