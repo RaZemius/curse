@@ -20,6 +20,7 @@ abstract class Model{
 }
     function __construct(){
         //$this->db = new Database();
+        $this->db = null;
         $this->db = new SurrealDriver('ws://127.0.0.1:8000/rpc');
         $this->db->login('root','root');
         $this->db->useDatabase('shop','main');   

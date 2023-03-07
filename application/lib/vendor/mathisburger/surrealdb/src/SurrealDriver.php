@@ -218,7 +218,7 @@ class SurrealDriver
     {
         $request = [
             'id' => strval(random_int(0, PHP_INT_MAX)),
-            'async' => false,
+            'async' => true,
             'method' => $method,
             'params' => $params,
         ];

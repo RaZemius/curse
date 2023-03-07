@@ -1,6 +1,7 @@
 remove table users;
 remove table customers;
 remove table items;
+remove table tokens;
 begin transaction;
 
 define table users schemafull;
@@ -22,11 +23,11 @@ define field item on table customers type array;
 define field item.* on table customers type string;
 
 define table tokens schemafull;
+define field time on table tokens;
 define field user on table tokens;
 
 COMMIT TRANSACTION;
 begin transaction;
-
 create users:razem set nick = 'raz', password = '12345', email = 'df260704@gmail.com';
 create users:rakot set nick = 'aboba', password = '614342', email = 'blackhole@mail.ru';
 COMMIT transaction;
@@ -40,4 +41,3 @@ create customers:1 set adress = 'генерало белова дом 19', execu
 COMMIT transaction;
 
 select item from customers;
-select author.nick from items:susmongus, items:coackroach;

@@ -14,20 +14,22 @@ class AccountController extends Controller
         $this->view->render("page of ".$data[1]);
     }
     function loginAction(){
-        if (assert($_COOKIE['user']) && assert($_COOKIE['token']))
+        if (array_key_exists('user',$_COOKIE) == true && array_key_exists('token',$_COOKIE) == true)
         {
-            $data = $this->model->check();
+            $data = $this->model->checkToken($_COOKIE['token']);
             $this->view->redirect(Config::$appConfig['root_url']);
         }
-        else if(assert($_POST['login'] && assert($_POST['pass'])))
+    else if(array_key_exists('login',$_POST) == true && array_key_exists('pass',$_POST)== true)
         {
             $res = $this->model->check_auth($_POST['login'], $_POST['pass']);
-            if ($res == true)
+            if ($res != false)
             {
-                setcookie('user', $_POST['login'], null);
-                setcookie('token', $this->model->setToken(), null);
+                $res = $this->model->setToken($res);
+                setcookie('user', $_POST['login'], 0);
+                setcookie('token', $res, time()+60);
+                $this->view->redirect(Config::$appConfig['root_url']);
             } else
-            {$this->view->render('вход');}
+            {echo 'access denied';}
         }
         else
         {$this->view->render('Вход');}
