@@ -9,8 +9,14 @@ class MainController extends Controller
 {
     function indexAction()
     {
-        $news = $this->model->getNews();
-        $this->view->render("Главная", ["news" => $news]);
+        $auth = null;
+        if(array_key_exists('user',$_COOKIE) == true && array_key_exists('token',$_COOKIE)){
+            if(($id = $this->model->checkToken($_COOKIE['token'])) != false){
+                $auth = $this->model->getUser($id);
+            }
+        }
+        $news = $this->model->getItems();
+        $this->view->render("Главная", ["news" => $news, "auth" => $auth]);
     }
     function searchAction($str){
         if ($str != '')
@@ -21,8 +27,7 @@ class MainController extends Controller
     }
     function updateAction()
     {
-        //var_dump($_REQUEST);
-if (assert($_POST[0])==true) {
+    if (assert($_POST[0])==true) {
     $json = json_decode(array_keys($_POST)[0]);
     
     if (assert($json->search)==true) {

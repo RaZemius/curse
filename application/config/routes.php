@@ -6,35 +6,29 @@ return [
 		'controller' => 'main',
 		'action' => 'index'
 	],
-	
 	'/search'=>[
 		'controller'=>'main',
 		'action'=>'update'
-	],
-	
-	'/logincheck'=>[
-		'controller'=>'account',
-		'action'=>''
 	],
 	'/profile' => [
 		'controller' => 'account',
 		'action' => 'index'
 	],
+	'/requier_profile'=>[
+		'controller'=>'account',
+		'action'=>'req_prof'
+	],
 	'/login'=>[
 		'controller'=>'account',
 		'action'=>'login'
 	],
-	'/posts' => [
-		'controller' => 'posts',
-		'action' => 'index'
+	'/profile/cart'=>[
+		'controller'=>'account',
+		'action'=>'cart'
 	],
-	'/posts/create-new' => [
-		'controller' => 'posts',
-		'action' => 'new'
-	],
-	'/profile/eddit' => [
-		'controller' => 'account',
-		'action' => 'eddit'
+	'/profile/requier_cart'=>[
+		'controller'=>'account',
+		'action'=>'req_cart'
 	]
 ];
 ?>

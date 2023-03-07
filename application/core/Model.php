@@ -8,7 +8,26 @@ use MathisBurger\SurrealDb\SurrealDriver;
 
 abstract class Model{
     public $db;
-
+    public function check_auth($user, $pass){
+        $macth = [];
+        if (preg_match('/^.*@.*\..*$/', $user, $macth) == 1){
+            $data =$this->db->query('SELECT * from users where email = "'.$user.'" and password ="'.$pass.'"')[0];
+        } else
+        {$data =$this->db->query('SELECT * from users where nick = "'.$user.'" and password ="'.$pass.'"')[0];}
+        if (count($data['result']) == 1) {
+        return $data['result'][0]['id'];}
+        else 
+        {return false;}
+        
+    }
+    public function checkToken($token)
+    {
+        $res = $this->db->query('select user from tokens:'.$token)[0]['result'];
+        if ($res != null)
+        {return $res[0]['user'];}
+        else
+        {return false;}
+    }
     public function RandomString()
     {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

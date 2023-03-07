@@ -15,5 +15,8 @@ $router = new Router();
 //var_dump($_POST);
 $router->run();
         } catch (Throwable $th) {
-            var_dump($th);
+            echo '<a>'.$th->getMessage().'</a></br>';
+            echo '<a>'.$th->getFile().'</a>';
+            echo '<a>'.$th->getLine().'</a>';
+            echo '<p>'.$th->getTraceAsString().'</p>';
         }

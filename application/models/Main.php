@@ -10,11 +10,14 @@ class Main extends Model {
 	// 	$result = $this->db->row('SELECT title, description FROM news');
 	// 	return $result;
 	// }
-	public function getNews(){
+	public function getItems(){
 		return $this->db->query('select name, value, author.nick from items')[0];
 	}
 	public function selectnews($str){
 		return $this->db->query('select name, value, author.nick from items where name ?~ "'.$str.'"')[0];
+	}
+	public function getUser($id){
+		return $this->db->query('select nick from users where id = "'.$id.'"')[0]['result'][0];
 	}
     
 }

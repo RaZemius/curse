@@ -9,24 +9,36 @@ use application\lib\Debug;
 
 class AccountController extends Controller
 {
-    function indexAction(){
-        $data = $this->model->getuser_prof(1);
-        $this->view->render("page of ".$data[1]);
-    }
-    function loginAction(){
+    public function Cookiecheck(){
+        $id = false;
         if (array_key_exists('user',$_COOKIE) == true && array_key_exists('token',$_COOKIE) == true)
         {
-            $data = $this->model->checkToken($_COOKIE['token']);
+            $id = $this->model->Check_user(urldecode($_COOKIE['user']));
+            $id = $this->model->checkToken($_COOKIE['token']);
+        }
+        return $id;
+    }
+    function indexAction(){
+        if(($id = $this->Cookiecheck()) != false){
+            $res =$this->model->get_user($id);
+            $this->view->render('профиль', ['profile' => $res]);
+        }
+        else{
+            $this->view->redirect(Config::$appConfig['root_url'].'login');
+        }
+    }
+    function loginAction(){
+        if ($this->Cookiecheck() != false){
             $this->view->redirect(Config::$appConfig['root_url']);
         }
-    else if(array_key_exists('login',$_POST) == true && array_key_exists('pass',$_POST)== true)
+        else if(array_key_exists('login',$_POST) == true && array_key_exists('pass',$_POST)== true)
         {
             $res = $this->model->check_auth($_POST['login'], $_POST['pass']);
             if ($res != false)
             {
                 $res = $this->model->setToken($res);
-                setcookie('user', $_POST['login'], 0);
-                setcookie('token', $res, time()+60);
+                setcookie('user', $_POST['login'], 0,'/');
+                setcookie('token', $res, time()+60, '/');
                 $this->view->redirect(Config::$appConfig['root_url']);
             } else
             {echo 'access denied';}
@@ -35,11 +47,7 @@ class AccountController extends Controller
         {$this->view->render('Вход');}
         
     }
-    function RegisterAction()
-    {
+    function ProfileAction(){
 
     }
-    function edditAction(){}
-    function AcError(){}
-
 }
