@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head></head>
+<head>
+  <link rel="stylesheet" href="/webalizer/public/styles/profile.css">
+</head>
 <body>
 
 
 
 <div class="form-wrap">
-    <div class="profile">
-      <h1>Регистрация</h1>
+    <div>
+      <h1>вход</h1>
     </div>
     <form method="post" action="">
-      <div>
+      <div class = grid id = login>
         <label for="login">E-mail</label>
         <input type="login" name="login" required>
       </div>
 
-      <div>
+      <div class = grid id = login>
         <label for="password">password</label>
         <input type="pass" name="pass" required>
       </div>

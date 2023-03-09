@@ -13,22 +13,7 @@ class Account extends Model
     // }
     public function get_user($id)
     {
-        return $this->db->query('SELECT * from users where id = "'.$id.'"')[0]['result'];
-    }
-    public function Check_user($id){
-        $macth = [];
-        $data = false;
-        try{
-        if (preg_match('/^.*@.*\..*$/', $id, $macth) == 1){
-            $data = $this->db->query('select id from users where email ="'.$id.'"')[0]['result'][0];
-        } else {
-            $data = $this->db->query('select id from users where id ="'.$id.'"')[0]['result'][0];
-        }
-        } catch (\Throwable $th){
-            return false;
-        }
-        return $data;
-
+        return $this->db->query('SELECT nick, id from users where id = "'.$id.'"')[0]['result'];
     }
     public function get_userid($email){
         $this->db->query('select id from users where email = "'.$email.'"');

@@ -9,26 +9,21 @@ use application\lib\Debug;
 
 class AccountController extends Controller
 {
-    public function Cookiecheck(){
-        $id = false;
-        if (array_key_exists('user',$_COOKIE) == true && array_key_exists('token',$_COOKIE) == true)
-        {
-            $id = $this->model->Check_user(urldecode($_COOKIE['user']));
-            $id = $this->model->checkToken($_COOKIE['token']);
-        }
-        return $id;
-    }
     function indexAction(){
-        if(($id = $this->Cookiecheck()) != false){
+        if(($id = $this->model->Cookiecheck()) != false){
             $res =$this->model->get_user($id);
-            $this->view->render('профиль', ['profile' => $res]);
+            if ($res != null){
+            $this->view->render('профиль', ['profile' => $res]);}
+            else {
+                $this->view->errorCode(404);
+            }
         }
         else{
             $this->view->redirect(Config::$appConfig['root_url'].'login');
         }
     }
     function loginAction(){
-        if ($this->Cookiecheck() != false){
+        if ($this->model->Cookiecheck() != false){
             $this->view->redirect(Config::$appConfig['root_url']);
         }
         else if(array_key_exists('login',$_POST) == true && array_key_exists('pass',$_POST)== true)
@@ -38,7 +33,7 @@ class AccountController extends Controller
             {
                 $res = $this->model->setToken($res);
                 setcookie('user', $_POST['login'], 0,'/');
-                setcookie('token', $res, time()+60, '/');
+                setcookie('token', $res, time()+3600, '/');
                 $this->view->redirect(Config::$appConfig['root_url']);
             } else
             {echo 'access denied';}

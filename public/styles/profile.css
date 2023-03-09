@@ -1,0 +1,29 @@
+.form-wrap{
+    background-color: aqua;
+    border-radius: 40px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+form{
+    display: flex;
+    flex-flow: column;
+}
+h1{
+    margin: 0;
+    text-align: center;
+}
+.grid {
+    display: grid;
+    margin: 10px;
+}
+label {
+    text-align: center;
+}
+#login {
+    justify-content: center;
+}
