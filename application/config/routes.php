@@ -7,16 +7,24 @@ return [
 		'action' => 'index'
 	],
 	'/search'=>[
-		'controller'=>'main',
+		'controller'=>'datareq',
 		'action'=>'update'
 	],
 	'/profile' => [
 		'controller' => 'account',
 		'action' => 'index'
 	],
-	'/requier_profile'=>[
+	'/profile/bucket'=>[
 		'controller'=>'account',
-		'action'=>'req_prof'
+		'action'=>'bucket'
+	],
+	'/profile/settings'=>[
+		'controller'=>'account',
+		'action'=>'settings'
+	],
+	'/data/requier_profile'=>[
+		'controller'=>'datareq',
+		'action'=>'user'
 	],
 	'/login'=>[
 		'controller'=>'account',
@@ -26,9 +34,22 @@ return [
 		'controller'=>'account',
 		'action'=>'cart'
 	],
-	'/profile/requier_cart'=>[
+	'/data/requier_cart'=>[
 		'controller'=>'account',
 		'action'=>'req_cart'
+	],
+	'/data/requier_items'=>[
+		'controller'=>'datareq',
+		'action'=>'get_items'
+	],
+
+	'/profile/story' => [
+		'controller' => 'account',
+		'action' => 'cart'
+	],
+	'/profile/chats' => [
+		'controller' => 'account',
+		'action' => 'chats'
 	]
 ];
 ?>

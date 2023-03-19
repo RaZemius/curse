@@ -1,6 +1,5 @@
 <?php
 namespace application\core;
-use application\lib\Database;
 
 
 include 'application/lib/vendor/autoload.php';
@@ -8,20 +7,34 @@ use MathisBurger\SurrealDb\SurrealDriver;
 
 abstract class Model{
     public $db;
-
+      /**
+         * @param string $str this func limits character set removing dangerous symbols such as ()"'!-><~=+
+         */
+    public function del_char($str){
+        $str = preg_replace('/[\"=+-><()!#$^&_*\':;]/', '', $str);
+        return $str;
+    }
+    /**
+     * checks user access via inserted cookies otherwise false
+     * can be used staticly
+     * @return string|false
+     */
     public function Cookiecheck(){
         $id = false;
         if (array_key_exists('user',$_COOKIE) == true && array_key_exists('token',$_COOKIE) == true)
         {
             $id = $this->Check_user(urldecode($_COOKIE['user']));
-            if($res = $this->checkToken($_COOKIE['token']) == $id)
-            {return $id;}
+            $res = $this->checkToken($_COOKIE['token']);
+            if($res == $id)
+            {return $res;}
             else
             { echo($id.'.'.$res);return false;}
         }
         return false;
     }
     public function check_auth($user, $pass){
+        $this->del_char($user);
+        $this->del_char($pass);
         $macth = [];
         if (preg_match('/^.*@.*\..*$/', $user, $macth) == 1){
             $data =$this->db->query('SELECT * from users where email = "'.$user.'" and password ="'.$pass.'"')[0];
@@ -34,9 +47,10 @@ abstract class Model{
     }
     public function checkToken($token)
     {
-        $res = $this->db->query('select user from tokens:'.$token)[0]['result'];
-        if ($res != null)
-        {return $res[0]['user'];}
+        //$this->del_char($token);
+        $res = $this->db->query('select user from tokens:'.$token)[0]['result'][0]['user'];
+        if ($res != '')
+        {return $res;}
         else
         {return false;}
     }
@@ -44,6 +58,7 @@ abstract class Model{
     public function Check_user($id){
         $macth = [];
         $data = false;
+        $this->del_char($id);
         try{
         if (preg_match('/^.*@.*\..*$/', $id, $macth) == 1){
             $data = $this->db->query('select id from users where email ="'.$id.'"')[0]['result'][0]['id'];

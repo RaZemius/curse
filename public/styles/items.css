@@ -1,0 +1,8 @@
+.items{
+    display: flex;
+    flex-flow: row;
+
+}
+.item{
+    flex-basis: content;
+}

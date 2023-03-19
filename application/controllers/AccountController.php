@@ -12,8 +12,9 @@ class AccountController extends Controller
     function indexAction(){
         if(($id = $this->model->Cookiecheck()) != false){
             $res =$this->model->get_user($id);
+            $arr = $this->model->get_user_items($id);
             if ($res != null){
-            $this->view->render('профиль', ['profile' => $res]);}
+            $this->view->render('профиль', ['profile' => $res, 'items' => $arr], 'profile');}
             else {
                 $this->view->errorCode(404);
             }
@@ -22,6 +23,39 @@ class AccountController extends Controller
             $this->view->redirect(Config::$appConfig['root_url'].'login');
         }
     }
+    function settingsAction(){
+        if(($id = $this->model->Cookiecheck())!= false){
+            $data = $this->model->get_user($id);
+            $this->view->render('настройки', ['data' => $data], 'profile');
+        }
+        else{
+            $this->view->redirect(Config::$appConfig['root_url'].'login');
+        }
+    }
+
+    public function cartAction()
+    {
+        if(($id = $this->model->Cookiecheck()) != false){
+            $data = $this->model->getcart($id);
+            $list = $this->model->getarraydata($data['item']);
+            $this->view->render('корзина', [], 'profile');
+        } else{
+
+            $this->view->redirect(Config::$appConfig['root_url'].'login');
+        }
+    }
+    public function chatsAction()
+    {
+        if(($id = $this->model->Cookiecheck()) != false){
+            $this->view->render('чаты', [], 'profile');
+        }else{
+            $this->view->redirect(Config::$appConfig['root_url'] . 'login');
+        }
+    }
+
+
+
+
     function loginAction(){
         if ($this->model->Cookiecheck() != false){
             $this->view->redirect(Config::$appConfig['root_url']);
@@ -41,8 +75,5 @@ class AccountController extends Controller
         else
         {$this->view->render('Вход');}
         
-    }
-    function ProfileAction(){
-
     }
 }

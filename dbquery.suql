@@ -8,6 +8,7 @@ define table users schemafull;
 define field nick on table users type string;
 define field password on table users type string;
 define field email on table users type string;
+define field json on table users type string;
 define index y on table users fields email unique;
 
 define table items schemafull;
@@ -16,6 +17,7 @@ define field author on table items;
 define field name on table items type string;
 
 define table customers schemafull;
+define field customer on table customers;
 define field adress on table customers type string;
 define field executor on table customers;
 define field reg_time on table customers;
@@ -26,18 +28,28 @@ define table tokens schemafull;
 define field time on table tokens;
 define field user on table tokens;
 
+define table chats schemafull;
+define field message on table chats;
+define field adress on table chats;
+define field writer on table chats;
+define field w_read on table chats type bool;
+define field r_read on table chats type bool;
+
+
+
 COMMIT TRANSACTION;
 begin transaction;
 create users:razem set nick = 'raz', password = '12345', email = 'df260704@gmail.com';
 create users:rakot set nick = 'aboba', password = '614342', email = 'blackhole@mail.ru';
 COMMIT transaction;
 begin transaction;
+create items:butterfly set value = 3000, author = users:razem, name = 'butterlfy';
 create items:coackroach set value = 1000, author = users:razem, name ='coackroach';
 create items:susmongus set value = 99999, author = users:rakot, name = 'susmongus';
 //create users:fake set nick = 'fake', password = '1241242', email = 'df260704@gmail.com';
 COMMIT transaction;
 begin transaction;
-create customers:1 set adress = 'генерало белова дом 19', executor = users:rakot, reg_time = time::now(), item = [items:susmongus, items:coackroach];
+create customers:1 set customer= 'users:razem', adress = 'генерало белова дом 19', executor = users:rakot, reg_time = time::now(), item = [items:susmongus, items:coackroach];
 COMMIT transaction;
 
 select item from customers;
