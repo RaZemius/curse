@@ -29,15 +29,21 @@ class Account extends Model
     public function getarraydata(array $pointers_array)
     {
         $query = 'select value, author, name from ';
-        foreach($pointers_array as $key){
-            $query = $query.$key.', '; 
+        $size = count($pointers_array);
+        for ($i=0; $i < $size; $i++) { 
+            $query = $query.$pointers_array[$i];
+            if ($i < $size-1)
+            {$query = $query.', ';}
         }
-        echo $query;
         return $this->db->query($query)[0]['result'];
     }
     public function getcart($id)
     {
         return $this->db->query('select * from customers where customer = "'.$id.'"')[0]["result"][0];
+    }
+    public function getchats($id)
+    {
+        return $this->db->query('select * from chats where writer = "'.$id.'" or adress = "'.$id.'"');
     }
 
 }

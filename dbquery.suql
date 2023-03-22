@@ -15,6 +15,9 @@ define table items schemafull;
 define field value on table items type int;
 define field author on table items;
 define field name on table items type string;
+define index anames on table items fields name unique;
+define field img on table items;
+define field description on table items type string;
 
 define table customers schemafull;
 define field customer on table customers;
@@ -27,6 +30,9 @@ define field item.* on table customers type string;
 define table tokens schemafull;
 define field time on table tokens;
 define field user on table tokens;
+define field endtime on table tokens;
+
+
 
 define table chats schemafull;
 define field message on table chats;
@@ -34,7 +40,6 @@ define field adress on table chats;
 define field writer on table chats;
 define field w_read on table chats type bool;
 define field r_read on table chats type bool;
-
 
 
 COMMIT TRANSACTION;

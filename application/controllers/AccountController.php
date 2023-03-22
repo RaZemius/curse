@@ -38,15 +38,15 @@ class AccountController extends Controller
         if(($id = $this->model->Cookiecheck()) != false){
             $data = $this->model->getcart($id);
             $list = $this->model->getarraydata($data['item']);
-            $this->view->render('корзина', [], 'profile');
+            $this->view->render('корзина', ['cart' => $data, 'items' => $list], 'profile');
         } else{
-
             $this->view->redirect(Config::$appConfig['root_url'].'login');
         }
     }
     public function chatsAction()
     {
         if(($id = $this->model->Cookiecheck()) != false){
+            $data =
             $this->view->render('чаты', [], 'profile');
         }else{
             $this->view->redirect(Config::$appConfig['root_url'] . 'login');

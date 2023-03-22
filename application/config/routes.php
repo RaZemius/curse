@@ -22,10 +22,6 @@ return [
 		'controller'=>'account',
 		'action'=>'settings'
 	],
-	'/data/requier_profile'=>[
-		'controller'=>'datareq',
-		'action'=>'user'
-	],
 	'/login'=>[
 		'controller'=>'account',
 		'action'=>'login'
@@ -34,15 +30,29 @@ return [
 		'controller'=>'account',
 		'action'=>'cart'
 	],
-	'/data/requier_cart'=>[
+	'/data/req/'=>[
 		'controller'=>'account',
 		'action'=>'req_cart'
 	],
-	'/data/requier_items'=>[
+	'/data/req/item_img'=>[
 		'controller'=>'datareq',
-		'action'=>'get_items'
+		'action'=>'get_itemImage'
+	],
+	'/data/create/item'=>[
+		'controller'=>'datareq',
+		'action'=>''
 	],
 
+	'/data/create/user'=>[
+		'controller'=>'datareq',
+		'action'=>'newuser'
+	],
+	
+	'/data/update/'=>[
+		'controller'=>'',
+		'action'=>''
+	],
+	
 	'/profile/story' => [
 		'controller' => 'account',
 		'action' => 'cart'

@@ -9,13 +9,8 @@ class MainController extends Controller
 {
     function indexAction()
     {
-        $auth = null;
-        if(array_key_exists('user',$_COOKIE) == true && array_key_exists('token',$_COOKIE)){
-            if(($id = $this->model->checkToken($_COOKIE['token'])) != false){
-            }
-        }
         $news = $this->model->getItems();
-        $this->view->render("Главная", ["news" => $news, "auth" => $auth]);
+        $this->view->render("Главная", ["news" => $news]);
     }
     function searchAction($str){
         if ($str != '')
@@ -23,5 +18,10 @@ class MainController extends Controller
         else
         {$data = $this->model->getNews();}
         $this->view->render("поиск", ["data" => $data]);
+    }
+    function ItemAction($id)
+    {
+        $data = $this->model->getItem($id);
+        $this->view->render($data['name'], ['data' =>$data], 'item');
     }
 }

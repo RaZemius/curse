@@ -3,6 +3,7 @@ namespace application\core;
 
 
 include 'application/lib/vendor/autoload.php';
+use application\lib\Config;
 use MathisBurger\SurrealDb\SurrealDriver;
 
 abstract class Model{
@@ -84,7 +85,7 @@ abstract class Model{
         //$this->db = new Database();
         $this->db = null;
         $this->db = new SurrealDriver('ws://127.0.0.1:8000/rpc');
-        $this->db->login('root','root');
-        $this->db->useDatabase('shop','main');   
+        $this->db->login(Config::$dbConfig['user'], Config::$dbConfig['pass']);
+        $this->db->useDatabase(Config::$dbConfig['ns'],Config::$dbConfig['db']);   
     }
 }

@@ -15,7 +15,7 @@ class Datareq extends Model
     {
     }
 
-    public function create_bucket()
+    public function create_cart()
     {
     }
     public function getuser($id){
