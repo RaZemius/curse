@@ -68,7 +68,7 @@ class AccountController extends Controller
                 $res = $this->model->setToken($res);
                 setcookie('user', $_POST['login'], 0,'/');
                 setcookie('token', $res, time()+3600, '/');
-                $this->view->redirect(Config::$appConfig['root_url']);
+                $this->view->redirect(Config::$appConfig['root_url'].'profile');
             } else
             {echo 'access denied';}
         }

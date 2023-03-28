@@ -29,7 +29,7 @@ abstract class Model{
             if($res == $id)
             {return $res;}
             else
-            { echo($id.'.'.$res);return false;}
+            {return false;}
         }
         return false;
     }
@@ -72,6 +72,10 @@ abstract class Model{
         return $data;
 
     }
+    public function query($str)
+    {
+        return $this->db->query($str);
+    }
     public function RandomString()
     {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -82,7 +86,6 @@ abstract class Model{
     return $randstring;
 }
     function __construct(){
-        //$this->db = new Database();
         $this->db = null;
         $this->db = new SurrealDriver('ws://127.0.0.1:8000/rpc');
         $this->db->login(Config::$dbConfig['user'], Config::$dbConfig['pass']);

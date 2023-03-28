@@ -1,0 +1,9 @@
+.profimg{
+    width: 100%;
+    height: 100%;
+}
+.profimg-con {
+    border-radius: 10%;
+    width: 90px;
+    height: 90px;
+}

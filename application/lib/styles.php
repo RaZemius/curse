@@ -1,28 +1,51 @@
 <?php
+
 namespace application\lib;
+
 use application\lib\Config;
-class styles{
+
+class styles
+{
     static public function get($name)
     {
-        echo '<link rel="stylesheet" href="'.Config::$appConfig['root_url'].'public/styles/'.$name.'.css">';
+        echo '<link rel="stylesheet" href="' . Config::$appConfig['root_url'] . 'public/styles/' . $name . '.css">';
     }
-    static public function setlink($page, $text){
-        echo '<a href ="'.Config::$appConfig['root_url'].$page.'">'.$text.'</a>';
+    static public function setlink($page, $text)
+    {
+        echo '<a href ="' . Config::$appConfig['root_url'] . $page . '">' . $text . '</a>';
     }
-    static public function setimg($id){
+    static public function setimg($id)
+    {
         $format = null;
-        $ah = Config::$appConfig['path'] . 'public/images/' . $id ;
+        $ah = Config::$appConfig['path'] . 'public/images/' . $id;
         $list = ['.png', '.jpg', '.jpeg', '.webp'];
         foreach ($list as $key) {
-            if(file_exists($ah.$key)){
+            if (file_exists($ah . $key)) {
                 $format = $key;
                 break;
             }
         }
-        if($format != null)
-        {echo '<img class = "img" src = "'.Config::$appConfig['root_url'].'public/images/'.$id.$format.'" width = "100%" height = "100%"></img>';}
-        else
-        {echo '<p>no such image found</p>';}
-        
+        if ($format != null) {
+            echo '<img class = "img" src = "' . Config::$appConfig['root_url'] . 'public/images/' . $id . $format . '" width = "100%" height = "100%"></img>';
+        } else {
+            echo '<p>no such image found</p>';
+        }
+    }
+    static function setProfImg($id)
+    {
+
+        $format = null;
+        $ah = Config::$appConfig['path'] . 'public/images/profiles/' . $id;
+        $list = ['.png', '.jpg', '.jpeg', '.webp'];
+        foreach ($list as $key) {
+            if (file_exists($ah . $key)) {
+                $format = $key;
+                break;
+            }
+        }
+
+        if ($format != null) {
+            styles::setlink('?p='.$id,'<div class = profimg-con><img class = "profimg" scr = "' . Config::$appConfig['root_url'] . 'public/images/profiles/' . $id . $format . '"></img></div>');
+        }
     }
 }

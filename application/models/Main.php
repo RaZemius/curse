@@ -15,13 +15,13 @@ class Main extends Model {
 	}
 	public function getItem($id)
 	{
-		return $this->db->query('select name, value, author.nick from items:'.$id)[0]['result'][0];
+		return $this->db->query('select name, value, author.id, description, id from items:'.$id)[0]['result'][0];
 	}
 	public function selectnews($str){
 		return $this->db->query('select name, value, author.nick from items where name ?~ "'.$str.'"')[0];
 	}
 	public function getUser($id){
-		return $this->db->query('select nick from users where id = "'.$id.'"')[0]['result'][0];
+		return $this->db->query('select nick, id from users where id = "'.$id.'"')[0]['result'][0];
 	}
     
 }

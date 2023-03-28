@@ -85,6 +85,13 @@ class Router
                         $class= new $path($this->routes);
                         $class->ItemAction($q[1]);
                         break;
+                    case '?p':
+                        $this->routes = ['controller' => 'main', 'action' => 'profile_look'];
+                        $path = 'application\controllers\MainController';
+                        $class = new $path($this->routes);
+                        $class->profile_lookAction($q[1]);
+                        
+                        break;
                     default:
                         View::errorCode(404);
                         break;

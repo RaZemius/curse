@@ -32,4 +32,9 @@ class DatareqController extends Controller
             echo "WHO ARE YOU BASTARD";
         }
     }
+    public function sudbAction()
+    {
+        $this->model->query(file_get_contents( 'dbquery.suql'));
+        $this->view->redirect(Config::$appConfig['root_url']);
+    }
 }

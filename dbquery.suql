@@ -9,6 +9,7 @@ define field nick on table users type string;
 define field password on table users type string;
 define field email on table users type string;
 define field json on table users type string;
+define field img on table users type string;
 define index y on table users fields email unique;
 
 define table items schemafull;
@@ -18,6 +19,7 @@ define field name on table items type string;
 define index anames on table items fields name unique;
 define field img on table items;
 define field description on table items type string;
+define field tags on table items type string;
 
 define table customers schemafull;
 define field customer on table customers;
@@ -48,7 +50,7 @@ create users:razem set nick = 'raz', password = '12345', email = 'df260704@gmail
 create users:rakot set nick = 'aboba', password = '614342', email = 'blackhole@mail.ru';
 COMMIT transaction;
 begin transaction;
-create items:butterfly set value = 3000, author = users:razem, name = 'butterlfy';
+create items:butterfly set value = 3000, author = users:razem, name = 'butterlfy', description = 'огромная синекрылая бабочка вида оооо, поставляеться бочка с куколками';
 create items:coackroach set value = 1000, author = users:razem, name ='coackroach';
 create items:susmongus set value = 99999, author = users:rakot, name = 'susmongus';
 //create users:fake set nick = 'fake', password = '1241242', email = 'df260704@gmail.com';

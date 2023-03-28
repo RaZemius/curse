@@ -53,6 +53,11 @@ return [
 		'action'=>''
 	],
 	
+	'/data/runquery'=>[
+		'controller'=>'datareq',
+		'action'=>'sudb'
+	],
+	
 	'/profile/story' => [
 		'controller' => 'account',
 		'action' => 'cart'
