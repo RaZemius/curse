@@ -1,24 +1,12 @@
-/*$(document).ready(function () {
-	$('.form__card').submit(function (event) {
-		var json;
-		event.preventDefault();
-		$.ajax({
-			type: $(this).attr('method'),
-			url: $(this).attr('action'),
-			data: new FormData(this),
-			contentType: false,
-			cache: false,
-			processData: false,
-			success: function (result) {
-				//location.reload();
-				var status = JSON.parse(result).status;
-
-				switch (status) {
-					case '2':
-						location.href = 'account/login';
-						break;
-				}
-			},
-		});
+let but = document.querySelector('#js');
+let reg = document.querySelectorAll('.reg');
+but.addEventListener('click', register);
+function register(){
+	h = document.querySelector('h1')
+	console.log(h)
+	reg.forEach(element => {
+		element.style.display = 'block'
 	});
-});*/
+	document.querySelector('input.button').name = 'register'
+	h.innerText = "Регистрация"
+}

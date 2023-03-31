@@ -42,10 +42,16 @@ class styles
                 $format = $key;
                 break;
             }
+        } if ($format != null) {
+            styles::setlink('?p='.$id,'<div class = profimg-con><img class = "profimg" src = "' . Config::$appConfig['root_url'] . 'public/images/profiles/' . $id . $format . '"></img></div>');
         }
+    }
 
-        if ($format != null) {
-            styles::setlink('?p='.$id,'<div class = profimg-con><img class = "profimg" scr = "' . Config::$appConfig['root_url'] . 'public/images/profiles/' . $id . $format . '"></img></div>');
+    static function setjs($name)
+    {   $path = Config::$appConfig['path'] . 'public/scripts/' . $name . '.js';
+        if (file_exists($path)== true){
+
+            echo '<script>'.file_get_contents($path).'</script>';
         }
     }
 }

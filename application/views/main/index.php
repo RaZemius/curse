@@ -12,11 +12,20 @@
 
 	styles::get('style');
 	?>
-	<header>
-		<form name="search" action="#" method="get">
-			<input type="text" name="q" placeholder="Search"><button type="submit">GO</button>
-		</form>
-	</header>
+
+	<div class="top">
+		<header>
+			<form name="search" action="#" method="get">
+				<input type="text" name="q" placeholder="Search"><button type="submit">GO</button>
+			</form>
+		</header>
+		<?php if($user == false)
+		{ echo '<button class = reg>регистрация</button>';}
+		
+		
+		
+		?>
+	</div>
 	<div>
 		<nav>
 			<ul class="top-menu">
@@ -28,7 +37,7 @@
 	</div>
 	<div class=items>
 		<?php foreach ($news as $post) : ?>
-			<a href="<?php echo Config::$appConfig['root_url'].'?i='.explode('items:',$post['id'])[1] ?>">
+			<a href="<?php echo Config::$appConfig['root_url'] . '?i=' . explode('items:', $post['id'])[1] ?>">
 				<div class='item'>
 					<p><?php echo $post["name"] ?></p>
 					<div class=imgcon>

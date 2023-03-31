@@ -10,7 +10,8 @@ define field password on table users type string;
 define field email on table users type string;
 define field json on table users type string;
 define field img on table users type string;
-define index y on table users fields email unique;
+define index u_email on table users fields email unique;
+define index u_nick on table users fields nick unique;
 
 define table items schemafull;
 define field value on table items type int;

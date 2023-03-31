@@ -96,6 +96,8 @@ class Router
                         View::errorCode(404);
                         break;
                 }
+            }else{
+                View::errorCode(404);
             }
         }
     }

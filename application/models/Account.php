@@ -41,6 +41,15 @@ class Account extends Model
     {
         return $this->db->query('select * from customers where customer = "'.$id.'"')[0]["result"][0];
     }
+    public function createuser($pass, $nick, $email)
+    {
+        $pass = $this->del_char($pass);
+        $nick = $this->del_char($nick);
+        $email = $this->del_char($email);
+
+        return $this->db->query('create users set nick = "'.$nick.'", email = "'.$email.'", password = "'.$pass.'"')[0]['result'][0];
+
+    }
     public function getchats($id)
     {
         return $this->db->query('select * from chats where writer = "'.$id.'" or adress = "'.$id.'"');

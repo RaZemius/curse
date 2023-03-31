@@ -19,7 +19,13 @@
 
     <div class=container>
         <div class=left></div>
-        <div class=main></div>
+        <div class=main>
+            <?php 
+            styles::setProfImg($data['id']);
+            echo $data['nick'];
+            
+            ?>
+        </div>
 
 </body>
 

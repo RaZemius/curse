@@ -1,4 +1,46 @@
-<figure>
+<div class=flex>
+
+    <div></div>
+    <div class=text>
+        <h1>404</h1>
+        <p>ops looks like this page are not exist</p>
+        <a href="<?php
+
+                    use application\lib\Config; echo Config::$appConfig['root_url']?>">do you want to go to main?</a>
+    </div>
+    <img class="aaa" src="<?php
+
+                            echo Config::$appConfig['root_url'] . 'public/files/404.png' ?>" alt="">
+
+</div>
+<style>
+    .text {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    * {
+        margin: 0;
+        font-weight: 900;
+        font-size: 40px;
+    }
+
+    .flex {
+        align-items: stretch;
+        height: 100%;
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+
+    }
+</style>
+
+<!--<figure>
     <div class="sad-mac"></div>
     <figcaption>
         <span class="sr-text">Error 404: Not Found</span>
@@ -141,4 +183,5 @@
             font-size: 8px;
         }
     }
-</style>
+</style> 
+-->

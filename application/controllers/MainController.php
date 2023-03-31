@@ -11,8 +11,12 @@ class MainController extends Controller
 {
     function indexAction()
     {
+        $id = false;
         $news = $this->model->getItems();
-        $this->view->render("Главная", ["news" => $news]);
+        if(($id = $this->model->Cookiecheck()) != false){
+            
+        }
+        $this->view->render("Главная", ["news" => $news, 'user' => $id]);
     }
     function searchAction($str){
         if ($str != '')
@@ -34,7 +38,7 @@ class MainController extends Controller
         if($this->model->Cookiecheck() == 'users:'.$id){
             $this->view->redirect(Config::$appConfig['root_url'].'profile');
         }
-        $data['id'] = explode(':',$data['id'])[1];
-        $this->view->render($data['nick'], ['data' => $data,],'profileitem');
+        $this->view->render($data['nick'], ['data' => $data],'profileitem');
+        
     }
 }

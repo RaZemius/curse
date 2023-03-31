@@ -11,6 +11,7 @@
     styles::get('tag');
     styles::get('profimg');
     ?>
+    
     <title><?php echo $title; ?></title>
 </head>
 
