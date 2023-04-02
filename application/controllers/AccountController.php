@@ -38,10 +38,8 @@ class AccountController extends Controller
         if (($id = $this->model->Cookiecheck()) != false) {
             $list = null;
             $data = $this->model->getcart($id);
-            if ($data['item'] != null) {
-                $list = $this->model->getarraydata($data['item']);
-            }
-            $this->view->render('корзина', ['cart' => $data, 'items' => $list], 'profile');
+            $list = $this->model->getarraydata($data['item']);
+            $this->view->render('корзина', ['cart' => $data, 'list' => $list], 'profile');
         } else {
             $this->view->redirect(Config::$appConfig['root_url'] . 'login');
         }
@@ -66,7 +64,7 @@ class AccountController extends Controller
         } else if (array_key_exists('login', $_POST) == true && array_key_exists('pass', $_POST) == true) {
             if (array_key_exists('email', $_POST) == true && array_key_exists('repeat', $_POST) && array_key_exists('register', $_POST) && $_POST['repeat'] == $_POST['pass']) {
 
-                if ($this->model->createuser($_POST['pass'], $_POST['login'], $_POST['email'])['status'] == 'OK') {
+                if ($this->model->createuser($_POST['pass'], $_POST['login'], $_POST['email']) != null) {
                     $id = $this->model->check_auth($_POST['login'], $_POST['pass']);
                     $res = $this->model->setToken($id);
                     setcookie('user', $id, 0, '/');

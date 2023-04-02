@@ -44,6 +44,8 @@ class styles
             }
         } if ($format != null) {
             styles::setlink('?p='.$id,'<div class = profimg-con><img class = "profimg" src = "' . Config::$appConfig['root_url'] . 'public/images/profiles/' . $id . $format . '"></img></div>');
+        } else{
+            styles::setlink('?p='.$id,'<div class = profimg-con><img class = "profimg" src = "' . Config::$appConfig['root_url'] . 'public/images/profiles/default.jpg"></img></div>');
         }
     }
 

@@ -34,11 +34,12 @@ class MainController extends Controller
     }
     function profile_lookAction($id)
     {
+        $id = 'users:'.$id;
         $data = $this->model->getUser($id);
+        $items = $this->model->getItemsOf($id);
         if($this->model->Cookiecheck() == 'users:'.$id){
             $this->view->redirect(Config::$appConfig['root_url'].'profile');
         }
-        $this->view->render($data['nick'], ['data' => $data],'profileitem');
-        
+        $this->view->render($data['nick'], ['data' => $data, 'items' => $items], 'profileitem');
     }
 }

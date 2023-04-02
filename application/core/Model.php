@@ -12,7 +12,7 @@ abstract class Model{
          * @param string $str this func limits character set removing dangerous symbols such as ()"'!-><~=+
          */
     public function del_char($str){
-        $str = preg_replace('/[\"=+-><()!#$^&_*\':;]/', '', $str);
+        $str = preg_replace('/[\"\=\+\-><()!#$^&_*\':;\[\]{}\,]/', '', $str);
         return $str;
     }
     /**
@@ -49,9 +49,9 @@ abstract class Model{
     public function checkToken($token)
     {
         //$this->del_char($token);
-        $res = $this->db->query('select user from tokens:'.$token)[0]['result'][0]['user'];
-        if ($res != '')
-        {return $res;}
+        $res = $this->db->query('select user from tokens:'.$token)[0]['result'];
+        if (array_key_exists(0,$res))
+        {return $res[0]['user'];}
         else
         {return false;}
     }
@@ -75,6 +75,20 @@ abstract class Model{
     public function query($str)
     {
         return $this->db->query($str);
+    }
+    /**
+     * some code simplification maded for supressing php warns
+     * takes $data and cheks $key for existans
+     * dont think that it will work with multi answer query with 1 result tag
+     * @return false|mixed
+     */
+    public function req_chek($data, $key = 0)
+    {
+        if(array_key_exists($key, $data[0]['result'])){
+            return $data[0]['result'][$key];
+        } else {
+            return false;
+        }
     }
     public function RandomString()
     {

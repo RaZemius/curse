@@ -28,7 +28,7 @@ class Account extends Model
     }
     public function getarraydata(array $pointers_array)
     {
-        $query = 'select value, author, name from ';
+        $query = 'select value, author, name, id, author.nick from ';
         $size = count($pointers_array);
         for ($i=0; $i < $size; $i++) { 
             $query = $query.$pointers_array[$i];
@@ -39,14 +39,19 @@ class Account extends Model
     }
     public function getcart($id)
     {
-        return $this->db->query('select * from customers where customer = "'.$id.'"')[0]["result"][0];
+        $data= $this->db->query('select * from customers where customer = "'.$id.'"');
+
+        if(array_key_exists(0, $data[0]['result']) ){
+            return $data[0]['result'][0];
+        } else {
+            return false;
+        }
     }
     public function createuser($pass, $nick, $email)
     {
         $pass = $this->del_char($pass);
         $nick = $this->del_char($nick);
         $email = $this->del_char($email);
-
         return $this->db->query('create users set nick = "'.$nick.'", email = "'.$email.'", password = "'.$pass.'"')[0]['result'][0];
 
     }

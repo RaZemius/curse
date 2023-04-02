@@ -6,7 +6,7 @@
 
     use application\lib\Config;
     use application\lib\styles;
-
+    styles::get('style');
     styles::get('items');
     styles::get('profile');
     styles::get('buttons');

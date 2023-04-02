@@ -11,6 +11,7 @@
 	use application\lib\styles;
 
 	styles::get('style');
+	styles::get('items')
 	?>
 
 	<div class="top">
@@ -29,7 +30,7 @@
 	<div>
 		<nav>
 			<ul class="top-menu">
-				<li><a href="/webalizer/profile">HOME</a></li>
+				<li><?php styles::setlink('profile', "HOME")?></li>
 				<li class="active">ABOUT US</li>
 
 			</ul>
@@ -37,7 +38,7 @@
 	</div>
 	<div class=items>
 		<?php foreach ($news as $post) : ?>
-			<a href="<?php echo Config::$appConfig['root_url'] . '?i=' . explode('items:', $post['id'])[1] ?>">
+			<a class = link href="<?php echo Config::$appConfig['root_url'] . '?i=' . explode('items:', $post['id'])[1] ?>">
 				<div class='item'>
 					<p><?php echo $post["name"] ?></p>
 					<div class=imgcon>

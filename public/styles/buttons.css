@@ -1,7 +1,5 @@
 .but{
-    color: royalblue;
-    justify-content:center;
-    background-color: aqua;
+    text-align: center;
+    background-color: rgb(0, 0, 0);
     margin: 1px;
-    flex-basis: 40px;
 }

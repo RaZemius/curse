@@ -17,11 +17,6 @@ max-width: 250px;
     object-fit: cover;
         overflow: hidden;
 }
-
-.items{
-    display: flex;
-}
-.item{
-    background-color: aliceblue;
-    margin: 2px;
+*{
+    color:aliceblue;
 }
