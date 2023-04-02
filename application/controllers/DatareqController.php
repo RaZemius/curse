@@ -34,7 +34,12 @@ class DatareqController extends Controller
     }
     public function sudbAction()
     {
-        $this->model->query(file_get_contents( 'dbquery.suql'));
-        $this->view->redirect(Config::$appConfig['root_url']);
+        $data = file_get_contents('dbquery.suql');
+        if ($data != false) {
+            $this->model->run($data);
+            $this->view->redirect(Config::$appConfig['root_url']);
+        }else {
+            echo 'error somewhere in code no return data';
+        }
     }
 }

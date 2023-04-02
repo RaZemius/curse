@@ -22,8 +22,11 @@
     <?php
     styles::setProfImg (explode(':', $data['id'])[1]);
     echo '<h1>'.$data['nick'].'</h1>';
-    var_dump($data);
-    echo '<p>'.$data['description'].'</p>';
+    if ($data['description'] != null)
+    {echo '<p>'.$data['description'].'</p>';}
+    else
+    {echo '<p>hmmm description empty</p>';}
+    echo $data['time'];
     ?>
     </div>
     <div class = right>

@@ -18,6 +18,10 @@ class Datareq extends Model
     public function create_cart()
     {
     }
+    public function run($str)
+    {
+        return $this->db->query($str);
+    }
     public function getuser($id){
         return $this->db->query('select id, nick from users where id = "'.$id.'"');
     }
