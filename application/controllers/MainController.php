@@ -37,7 +37,7 @@ class MainController extends Controller
         $id = 'users:'.$id;
         $data = $this->model->getUser($id);
         $items = $this->model->getItemsOf($id);
-        if($this->model->Cookiecheck() == 'users:'.$id){
+        if ($this->model->Cookiecheck() == $id){
             $this->view->redirect(Config::$appConfig['root_url'].'profile');
         }
         $this->view->render($data['nick'], ['data' => $data, 'items' => $items], 'profileitem');

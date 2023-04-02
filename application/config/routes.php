@@ -10,6 +10,11 @@ return [
 		'controller'=>'datareq',
 		'action'=>'update'
 	],
+	
+	'/profile/exit'=>[
+		'controller'=>'account',
+		'action'=>'exit'
+	],
 	'/profile' => [
 		'controller' => 'account',
 		'action' => 'index'

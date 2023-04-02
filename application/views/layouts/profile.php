@@ -23,7 +23,7 @@
             <div class=but><?php styles::setlink('profile/story', 'cart'); ?></div>
             <div class=but><?php styles::setlink('profile/chats', 'chats') ?></div>
             <div class=but><?php styles::setlink('profile/settings', 'settings') ?></div>
-            <div class=but></div>
+            <div class=but><?php styles::setlink('profile/exit', 'exit')?></div>
             <div class=but></div>
         </div>
     </section>
