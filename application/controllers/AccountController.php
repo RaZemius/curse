@@ -85,7 +85,7 @@ class AccountController extends Controller
                 }
             }
         } else {
-            $this->view->render('Вход');
+            $this->view->render('Вход', [], 'none');
         }
     }
 }
