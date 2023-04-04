@@ -88,4 +88,13 @@ class AccountController extends Controller
             $this->view->render('Вход', [], 'none');
         }
     }
+    function exitAction()
+    {
+        if (($id = $this->model->Cookiecheck()) != false) {
+            setcookie('user', null, -1, '/');
+            setcookie('token', null, -1, '/');
+            $this->model->deltoken($id);
+            $this->view->redirect(Config::$appConfig['root_url']);
+        }
+    }
 }

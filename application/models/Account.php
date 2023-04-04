@@ -55,6 +55,11 @@ class Account extends Model
         return $this->db->query('create users set nick = "'.$nick.'", email = "'.$email.'", password = "'.$pass.'"')[0]['result'][0];
 
     }
+    public function deltoken($id)
+    {
+        echo $id;
+        $this->db->query('delete tokens where user = '.$id);
+    }
     public function getchats($id)
     {
         return $this->db->query('select * from chats where writer = "'.$id.'" or adress = "'.$id.'"');
