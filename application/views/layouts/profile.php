@@ -6,6 +6,7 @@
 
     use application\lib\Config;
     use application\lib\styles;
+
     styles::get('style');
     styles::get('items');
     styles::get('profile');
@@ -20,11 +21,11 @@
         </div>
         <div class=menu>
             <div class=but><?php styles::setlink('profile', 'page') ?></div>
-            <div class=but><?php styles::setlink('profile/story', 'cart'); ?></div>
+            <div class=but><?php styles::setlink('profile/create', 'create') ?></div>
             <div class=but><?php styles::setlink('profile/chats', 'chats') ?></div>
+            <div class=but><?php styles::setlink('profile/story', 'cart'); ?></div>
             <div class=but><?php styles::setlink('profile/settings', 'settings') ?></div>
-            <div class=but><?php styles::setlink('profile/exit', 'exit')?></div>
-            <div class=but></div>
+            <div class=but><?php styles::setlink('profile/exit', 'exit') ?></div>
         </div>
     </section>
     <script>

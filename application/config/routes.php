@@ -15,6 +15,11 @@ return [
 		'controller'=>'account',
 		'action'=>'exit'
 	],
+
+	'/profile/create' => [
+		'controller' => 'account',
+		'action' => 'create'
+	],
 	'/profile' => [
 		'controller' => 'account',
 		'action' => 'index'

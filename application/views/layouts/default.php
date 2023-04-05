@@ -16,15 +16,13 @@
 <body>
 
 	<div class="top">
-		<header>
-			<form name="search" action="#" method="get">
-				<input type="text" name="q" placeholder="Search"><button type="submit">GO</button>
+			<form name="search" action="#" method="get" class = toptext>
+				<input type="text" name="q" placeholder="Search" class = toptext><button class = toptext type="submit">GO</button>
 			</form>
-		</header>
 		<?php if ($user == false) {
-			styles::setlink('login', '<button>registration</button>');
+			styles::setlink('login', '<button class = toptext>registration</button>');
 		} else{
-			styles::setlink('profile', "<button>HOME</button>");
+			styles::setlink('profile', "<button class = toptext>HOME</button>");
 		}
 
 

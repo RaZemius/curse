@@ -5,8 +5,10 @@
 }
 .item{
     background-color: rgb(20, 20, 20);
-    flex-basis: content;
+
+    margin: 10px;
 }
 .link {
-    margin: 10px;
+    width: fit-content;
+    height: fit-content;
 }

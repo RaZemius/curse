@@ -95,6 +95,18 @@ class AccountController extends Controller
             setcookie('token', null, -1, '/');
             $this->model->deltoken($id);
             $this->view->redirect(Config::$appConfig['root_url']);
+        } else {
+            $this->view->redirect(Config::$appConfig['root_url']);
+        }
+    }
+    function createAction()
+    {
+        if (($id = $this->model->Cookiecheck()) != false) {
+            if (count($_POST) > 0) {
+            }
+            $this->view->render('creating an item', ['user' => $id], 'profile');
+        } else {
+            $this->view->redirect(Config::$appConfig['root_url']);
         }
     }
 }
