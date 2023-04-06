@@ -3,10 +3,7 @@
 namespace application\controllers;
 
 use application\core\Controller;
-use application\core\Model;
-use application\core\View;
 use application\lib\Config;
-use application\lib\Debug;
 
 class DatareqController extends Controller
 {
@@ -48,18 +45,28 @@ class DatareqController extends Controller
         if (($id = $this->model->Cookiecheck()) != false) {
 
             if (count($_POST) > 0) {
-                $item = $this->model->query('create items set name ="' . $_POST['name'] . '", author = "' . $id . '", value = "'.$_POST['value'].'"')[0]['result'][0]['id'];
-                if (($file =$this->fileimport($item)) != false) {
-                   //move_uploaded_file($file, Config::$appConfig['path'].'/public/images/')
-                   rename($file, Config::$appConfig['path'].'/public/images/'.explode(":",$item)[1]);
+                $item = $this->model->query('create items set name ="' . $_POST['name'] . '", author = "' . $id . '", value = "' . $_POST['value'] . '"')[0];
+                if ($item['status'] == "OK") {
+                    $item = $item['result'][0]['id'];
+                } else {
+                    
+                    http_response_code(503);
+                    echo 'database error '.$item['detail'];
+                    die();
+                }
+                if (($file = $this->fileimport($item)) != false) {
+                    $id = explode(":", $item)[1];
+                    $type = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+                    $to = Config::$appConfig['path'] . 'public/images/' . $id . '.' . $type;
+                    echo $to;
+                    rename($file, $to);
                 } else {
                     http_response_code(503);
-                    $this->model->query('delete "'.$item.'"');
                     echo 'upload error';
                 }
             }
         } else {
-            http_response_code(403);
+            http_response_code(401);
         }
     }
 
@@ -67,7 +74,7 @@ class DatareqController extends Controller
 
     public function fileimport($token)
     {
-        $target_dir = Config::$appConfig['path'] . '/public/temp/';
+        $target_dir = Config::$appConfig['path'] . 'public/temp/';
         $target_file = $target_dir . basename($_FILES["img"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -99,9 +106,10 @@ class DatareqController extends Controller
         }
 
         // Allow certain file formats
-        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-            && $imageFileType != "gif") 
-        {
+        if (
+            $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+            && $imageFileType != "gif"
+        ) {
             echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
             $uploadOk = 0;
         }

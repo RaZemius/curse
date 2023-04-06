@@ -1,4 +1,7 @@
 <?php
+use application\lib\styles;
+styles::get('profimg');
+styles::setProfImg(explode(':', $profile['id'])[1], false);
 echo '<p>' . $profile['nick'] . '</p>';
 echo '<p>UUID: ' . $profile['id'] . '</p>';
 if (count($items) != 0) {

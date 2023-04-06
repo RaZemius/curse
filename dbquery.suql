@@ -24,6 +24,11 @@ define field description on table items type string;
 define field tags on table items type array;
 define field tags.* on table items type string;
 
+define table votes schemafull;
+define field item;
+define field user;
+define field vote;
+
 define table customers schemafull;
 define field customer on table customers;
 define field adress on table customers type string;
@@ -56,7 +61,6 @@ begin transaction;
 create items:butterfly set value = 3000, author = users:razem, name = 'butterlfy', description = 'огромная синекрылая бабочка вида оооо, поставляеться бочка с куколками';
 create items:coackroach set value = 1000, author = users:razem, name ='coackroach';
 create items:susmongus set value = 99999, author = users:rakot, name = 'susmongus';
-//create users:fake set nick = 'fake', password = '1241242', email = 'df260704@gmail.com';
 COMMIT transaction;
 begin transaction;
 create customers:1 set customer= 'users:razem', adress = 'генерало белова дом 19', executor = users:rakot, reg_time = time::now(), item = [items:susmongus, items:coackroach];

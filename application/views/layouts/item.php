@@ -22,8 +22,11 @@
     <?php
     echo '<h1>'.$data['name'].'</h1>';
     $str = '';
+    if(array_key_exists('tags',$data)){
     foreach ($data['tags'] as $key => $value) {
-        '<div class = tag>'.$key.'</div>';
+        $str += '<div class = tag>#'.$key.'</div>';
+    }} else{
+        $str = '<div class = tag>no tags</div>';
     }
     echo $str;
     echo '<p>'.$data['description'].'</p>';
@@ -34,7 +37,6 @@
     <?php
     styles::setProfImg($user['id']); 
     styles::setlink('?p='.$user['id'], $user['nick']);
-
     ?>
     </div>
     </div>

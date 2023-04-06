@@ -30,9 +30,9 @@ class styles
         } else {echo '<img class = "img" src = "' . Config::$appConfig['root_url'] . 'public/images/' . $id . '" width = "100%" height = "100%"></img>';
         }
     }
-    static function setProfImg($id)
+    static function setProfImg($id, $link = true)
     {
-
+        $val = null;
         $format = null;
         $ah = Config::$appConfig['path'] . 'public/images/profiles/' . $id;
         $list = ['.png', '.jpg', '.jpeg', '.webp'];
@@ -42,10 +42,14 @@ class styles
                 break;
             }
         } if ($format != null) {
-            styles::setlink('?p='.$id,'<div class = profimg-con><img class = "profimg" src = "' . Config::$appConfig['root_url'] . 'public/images/profiles/' . $id . $format . '"></img></div>');
+            $val ='<div class = profimg-con><img class = "profimg" src = "' . Config::$appConfig['root_url'] . 'public/images/profiles/' . $id . $format . '"></img></div>';
         } else{
-            styles::setlink('?p='.$id,'<div class = profimg-con><img class = "profimg" src = "' . Config::$appConfig['root_url'] . 'public/images/profiles/default.jpg"></img></div>');
+        $val ='<div class = profimg-con><img class = "profimg" src = "' . Config::$appConfig['root_url'] . 'public/images/profiles/default.jpg"></img></div>';
         }
+        if($link == true)
+        {styles::setlink('?p='.$id, $val);}
+        else
+        {echo $val;}
     }
 
     static function setjs($name)

@@ -22,11 +22,13 @@
     <?php
     styles::setProfImg (explode(':', $data['id'])[1]);
     echo '<h1>'.$data['nick'].'</h1>';
-    if ($data['description'] != null)
+    if (array_key_exists('tags', $data ))
     {echo '<p>'.$data['description'].'</p>';}
     else
     {echo '<p>hmmm description empty</p>';}
-    echo $data['time'];
+    if(array_key_exists('time', $data)) {
+        echo $data['time'];
+    }
     ?>
     </div>
     <div class = right>
