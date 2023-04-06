@@ -50,7 +50,7 @@ return [
 	],
 	'/data/create/item'=>[
 		'controller'=>'datareq',
-		'action'=>''
+		'action'=>'citem'
 	],
 
 	'/data/create/user'=>[

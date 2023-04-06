@@ -30,7 +30,6 @@
     </section>
     <script>
         let target = document.querySelectorAll('a')
-        console.log(target);
         target.forEach(element => {
 
             let url = element.href

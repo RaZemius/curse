@@ -102,8 +102,6 @@ class AccountController extends Controller
     function createAction()
     {
         if (($id = $this->model->Cookiecheck()) != false) {
-            if (count($_POST) > 0) {
-            }
             $this->view->render('creating an item', ['user' => $id], 'profile');
         } else {
             $this->view->redirect(Config::$appConfig['root_url']);
