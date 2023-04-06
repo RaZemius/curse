@@ -27,8 +27,7 @@ class styles
         }
         if ($format != null) {
             echo '<img class = "img" src = "' . Config::$appConfig['root_url'] . 'public/images/' . $id . $format . '" width = "100%" height = "100%"></img>';
-        } else {
-            echo '<p>no such image found</p>';
+        } else {echo '<img class = "img" src = "' . Config::$appConfig['root_url'] . 'public/images/' . $id . '" width = "100%" height = "100%"></img>';
         }
     }
     static function setProfImg($id)
