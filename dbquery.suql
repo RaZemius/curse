@@ -25,9 +25,9 @@ define field tags on table items type array;
 define field tags.* on table items type string;
 
 define table votes schemafull;
-define field item;
-define field user;
-define field vote;
+define field item on table votes;
+define field user on table votes;
+define field vote on table votes;
 
 define table customers schemafull;
 define field customer on table customers;

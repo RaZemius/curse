@@ -58,7 +58,6 @@ class DatareqController extends Controller
                     $id = explode(":", $item)[1];
                     $type = strtolower(pathinfo($file, PATHINFO_EXTENSION));
                     $to = Config::$appConfig['path'] . 'public/images/' . $id . '.' . $type;
-                    echo $to;
                     rename($file, $to);
                 } else {
                     http_response_code(503);
