@@ -116,8 +116,14 @@ abstract class Model
     function __construct()
     {
         $this->db = null;
+        try {
+            
         $this->db = new SurrealDriver('ws://127.0.0.1:8000/rpc');
         $this->db->login(Config::$dbConfig['user'], Config::$dbConfig['pass']);
         $this->db->useDatabase(Config::$dbConfig['ns'], Config::$dbConfig['db']);
+        } catch (\Throwable $th) {
+            echo '!SERVER ERROR!';
+            die(1);
+        }
     }
 }
