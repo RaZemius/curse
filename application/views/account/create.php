@@ -10,8 +10,6 @@ echo '<script> let path = "' . Config::$appConfig['root_url'] . 'data/create/ite
 
 
 
-styles::setjs('post');
-styles::setjs('create_item');
 
 ?>
 <form name='panic' onsubmit="run(this);return false;">
@@ -23,3 +21,8 @@ styles::setjs('create_item');
     <input type="submit" value="item" class=form>
 
 </form>
+<?php
+
+styles::setjs('post');
+styles::setjs('create_item');
+?>

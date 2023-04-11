@@ -20,6 +20,8 @@
             <?php echo $content; ?>
         </div>
         <div class=menu>
+
+            <div class=but><?php styles::setlink('', 'go back to main') ?></div>
             <div class=but><?php styles::setlink('profile', 'page') ?></div>
             <div class=but><?php styles::setlink('profile/create', 'create') ?></div>
             <div class=but><?php styles::setlink('profile/chats', 'chats') ?></div>

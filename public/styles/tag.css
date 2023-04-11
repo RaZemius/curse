@@ -1,5 +1,10 @@
 .tag{
     background-color: blanchedalmond;
     color: black;
-    border-radius: 10px;
+    border-radius: 10%;
+    padding: 4px;
+    margin: 4px;
+}
+.tags {
+    display: flex;
 }

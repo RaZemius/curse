@@ -11,8 +11,9 @@ class Datareq extends Model
         $match = $this->db->query('select * from items where name ~? "'.$word.'"');
         return $match;
     }
-    public function create_item()
+    public function create_item($str, $arr)
     {
+        return $this->db->create($str, $arr);
     }
 
     public function create_cart()

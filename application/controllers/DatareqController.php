@@ -4,7 +4,6 @@ namespace application\controllers;
 
 use application\core\Controller;
 use application\lib\Config;
-
 class DatareqController extends Controller
 {
     //this module extends data transmision between js and php for limited access to db entries
@@ -45,24 +44,39 @@ class DatareqController extends Controller
         if (($id = $this->model->Cookiecheck()) != false) {
 
             if (count($_POST) > 0) {
-                $item = $this->model->query('create items set name ="' . $_POST['name'] . '", author = "' . $id . '", value = "' . $_POST['value'] . '"')[0];
-                if ($item['status'] == "OK") {
-                    $item = $item['result'][0]['id'];
-                } else {
-                    
+                $post = $_POST;
+                if (assert($post['tags']))
+                {$post['tags'] = explode(', ', $post['tags']);}
+                $str = 'create items set ';
+                $str = $str.json_encode($post);
+                /*foreach ($_POST as $key => $val){
+                    if (str_contains($val, ','))
+                    {
+                        $arr = explode(', ', $val);
+                        $str = $str.$key.' = '.json_encode($arr).',';
+                    }
+                    else
+                    {$str = $str.$key.'="'.$val.'",';}
+                }
+                $str = preg_replace('/,.?$/', '', $str);
+                */
+                
+                try{
+                    $item = $this->model->create_item('items', $post)[0];
+                }
+                catch(\Throwable $th) {
                     http_response_code(503);
-                    echo 'database error '.$item['detail'];
+                    echo 'database error, this item with this name already exist';
                     die();
                 }
-                if (($file = $this->fileimport($item)) != false) {
-                    $id = explode(":", $item)[1];
-                    $type = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-                    $to = Config::$appConfig['path'] . 'public/images/' . $id . '.' . $type;
-                    rename($file, $to);
+                if (($file = $this->fileimport($item['id'])) != false) {
+                    echo $a = explode(':', $item['id'])[1];
+                    //$this->view->redirect(Config::$appConfig['root_url'].'?i=' . $a[1]);
                 } else {
-                    http_response_code(503);
+                    http_response_code(207);
                     echo 'upload error';
                 }
+
             }
         } else {
             http_response_code(401);
@@ -73,7 +87,7 @@ class DatareqController extends Controller
 
     public function fileimport($token)
     {
-        $target_dir = Config::$appConfig['path'] . 'public/temp/';
+        $target_dir = Config::$appConfig['path'] . 'public/images/';
         $target_file = $target_dir . basename($_FILES["img"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -119,9 +133,15 @@ class DatareqController extends Controller
             // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
-                return $target_file; //echo "The file " . htmlspecialchars(basename($_FILES["img"]["name"])) . " has been uploaded.";
+                $hm = $target_dir . explode(':', $token)[1] . '.' . $imageFileType;
+                rename($target_file,$hm);
+                return $hm; //echo "The file " . htmlspecialchars(basename($_FILES["img"]["name"])) . " has been uploaded.";
             } else {
-                return false; //echo "Sorry, there was an error uploading your file.";
+                echo $target_file;
+                echo $target_dir;
+                var_dump($_FILES);
+                //echo "Sorry, there was an error uploading your file.";
+                return false;
             }
         }
     }
