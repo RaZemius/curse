@@ -2,6 +2,7 @@
 use application\lib\Config;
 
 if ($list != false) {
+    /*
 	echo '<div class = items>';
     foreach ($list as $post) {
         echo '<a class = link href="' . Config::$appConfig['root_url'] . '?i=' . explode('items:', $post['id'])[1] . '">';
@@ -12,7 +13,7 @@ if ($list != false) {
         echo '</div>';
         echo '</a>';
     }
-	echo '</div>';
+	echo '</div>';*/
 } else {
     echo 'its fully empty';
 }

@@ -15,7 +15,7 @@ class Account extends Model
         return $this->db->query('SELECT nick, id, json from users where id = "'.$id.'"')[0]['result'][0];
     }
     public function get_user_items($id){
-        return $this->db->query('select value, name from items where author = "'.$id.'"')[0]['result'];
+        return $this->db->query('select * from items where author = "'.$id.'"')[0]['result'];
     }
     public function get_settings($user_id){
         return $this->db->query('select json from users where id="'.$user_id.'"');

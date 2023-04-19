@@ -7,6 +7,12 @@
 .item{
     background-color: rgb(20, 20, 20);
     margin: 10px;
+    height: max-content;
+}
+.names {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 .link {
     width: fit-content;

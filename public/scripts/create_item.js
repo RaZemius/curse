@@ -9,7 +9,7 @@ function run(event){
     }
 }
 function post(adress, raw_data) {
-    console.log('posting data to server', raw_data);
+    //console.log('posting data to server', raw_data);
     const res = new XMLHttpRequest();
     //res.addEventListener('loadend', ()=>{return res})
     //res.addEventListener('error', ()=>{return 1;})

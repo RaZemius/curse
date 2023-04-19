@@ -15,7 +15,12 @@ class Main extends Model {
 	}
 	public function getItemsOf($uid)
 	{
-		return $this->req_chek($this->db->query('select * from items where author = "'.$uid.'"'));
+		$data = $this->db->query('select * from items where author = "' . $uid . '"');
+		if (array_key_exists('result', $data[0])){
+			return $data[0]['result'];
+		} else{
+			return false;
+		}
 	}
 	public function getItem($id)
 	{

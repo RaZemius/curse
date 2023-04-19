@@ -35,7 +35,7 @@
             }
             echo $str;
             echo '<p>' . $data['description'] . '</p>';
-            styles::setimg(explode('items:', $data['id'])[1]);
+            styles::setimg(explode(':', $data['id'])[1]);
             ?>
         </div>
         <div class=right>

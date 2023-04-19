@@ -28,7 +28,7 @@ class MainController extends Controller
     function ItemAction($id)
     {
         $data = $this->model->getItem($id);
-        $user = $this->model->getUser($data['author']['id']);
+        $user = $this->model->getUser($data['author']);
         $user['id'] = explode(':', $user['id'])[1];
         $this->view->render($data['name'], ['data' =>$data, 'user'=>$user], 'item');
     }

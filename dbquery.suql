@@ -27,8 +27,8 @@ define field tags.* on table items type string;
 define table votes schemafull;
 define field item on table votes;
 define field user on table votes;
-define field vote on table votes;
-define field comment on table votes;
+define field value on table votes type int;
+define field comment on table votes type string;
 define index voted_already on table votes fields item, user unique;
 
 define table customers schemafull;

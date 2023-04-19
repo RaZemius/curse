@@ -14,7 +14,7 @@ class styles
     {
         echo '<a href ="' . Config::$appConfig['root_url'] . $page . '">' . $text . '</a>';
     }
-    static public function setimg($id)
+    static public function setimg($id, $ret = false)
     {
         $format = null;
         $ah = Config::$appConfig['path'] . 'public/images/' . $id;
@@ -26,8 +26,12 @@ class styles
             }
         }
         if ($format != null) {
-            echo '<img class = "img" src = "' . Config::$appConfig['root_url'] . 'public/images/' . $id . $format . '" width = "100%" height = "100%"></img>';
-        } else {echo '<img class = "img" src = "' . Config::$appConfig['root_url'] . 'public/images/' . $id . '" width = "100%" height = "100%"></img>';
+            $str ='<img class = "img" src = "' . Config::$appConfig['root_url'] . 'public/images/' . $id . $format . '" width = "100%" height = "100%"></img>';
+        } else {$str = '<img class = "img" src = "' . Config::$appConfig['root_url'] . 'public/images/' . $id . '" width = "100%" height = "100%"></img>';}
+        if ($ret != false){
+            return $str;
+        } else {
+            echo $str;
         }
     }
     static function setProfImg($id, $link = true)
@@ -58,5 +62,32 @@ class styles
 
             echo '<script>'.file_get_contents($path).'</script>';
         }
+    }
+    static function genitems($array, $link = false)
+    {
+        $str = '';
+        $str .= '<div class = items>';
+        foreach ($array as $key) {
+            if ($link != false){
+            $str .= '<a class = item href="?i='.explode(':',$key['id'])[1].'">';}
+            else{
+                $str .= '<div class = item>';
+            }
+            $str .= styles::setimg(explode(':',$key['id'])[1], true);
+            unset($key['id'], $key['author'], $key['description']);
+            $str .= '<div class = names>';
+            foreach ($key as $part) {
+                $str .= '<p>' . $part . '</p>';
+            }
+            $str .= '</div>';
+            if($link != false){
+            $str .= '</a>';
+            }
+            else{
+                $str .= '</div>';
+            }
+        }
+        $str .= '</div>';
+        return $str;
     }
 }
