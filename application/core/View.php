@@ -15,6 +15,11 @@ class View
 		$this->path = $route['controller'] . '/' . $route['action'];
 	}
 
+	static public function return_req()
+	{
+		Header("Location: " . $_SERVER['HTTP_REFERER']);
+
+	}
 	public function render($title, $vars = [], $layout = "default", $page = "")
 	{
 		extract($vars);
@@ -29,9 +34,10 @@ class View
 		}
 	}
 
-	public function redirect($url)
+	static public function redirect($url)
 	{
-		Header("Location: " . $url);
+		
+		Header("Location: ".Config::$appConfig['root_url'] . $url);
 	}
 
 	public static function errorCode($code)

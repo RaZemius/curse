@@ -19,7 +19,6 @@
 
 <body>
     <div class=container>
-        <div class=left></div>
         <div class=main>
             <?php
             echo '<h1>' . $data['name'] . '</h1>';
@@ -29,7 +28,7 @@
                 foreach ($data['tags'] as $key => $value) {
                     $str .= '<div class = tag>#' . $value . '</div>';
                 }
-                $str.='</div>';
+                $str .= '</div>';
             } else {
                 $str = '<div class = tag>no tags</div>';
             }
@@ -42,6 +41,24 @@
             <?php
             styles::setProfImg($user['id']);
             styles::setlink('?p=' . $user['id'], $user['nick']);
+
+            $str = '<div class = comments>';
+            if (count($data['votes']) > 0) {
+                $len = 0;
+                $mid = 0;
+                foreach ($data['votes'] as $val) {
+                    $mid += $val['value'];
+                    if (array_key_exists('comment', $val)) {
+                        $str .= '<p>user ' . explode(':',$val['user'])[1] . '</p><p>' . $val['comment'] . '</p>';
+                    }
+                    $len++;
+                }
+                echo 'votes ' . $len . '</br>';
+                echo 'average ' . $mid / $len;
+            } else {
+                echo 'looks like nobody voted yet';
+            }
+            echo $str ;
             ?>
         </div>
     </div>

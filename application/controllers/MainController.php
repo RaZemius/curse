@@ -16,6 +16,7 @@ class MainController extends Controller
         if(($id = $this->model->Cookiecheck()) != false){
             
         }
+        
         $this->view->render("Главная", ["news" => $news, 'user' => $id]);
     }
     function searchAction($str){

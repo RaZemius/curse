@@ -24,7 +24,7 @@ class Main extends Model {
 	}
 	public function getItem($id)
 	{
-		return $this->db->query('select * from items:'.$id)[0]['result'][0];
+		return $this->db->query('select *, (select * from votes where item = items:'.$id.') as votes from items:'.$id)[0]['result'][0];
 	}
 	public function selectnews($str){
 		return $this->db->query('select name, value, author.nick from items where name ?~ "'.$str.'"')[0];

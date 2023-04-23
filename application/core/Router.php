@@ -72,33 +72,36 @@ class Router
             $res = null;
             if (1 == preg_match('/(\?.*?=.*?)$/', $_SERVER['REQUEST_URI'], $res)) {
                 $q = explode('=', $res[0]);
-                switch ($q[0]) {
-                    case '?q':
-                        $this->routes = ['controller' => 'main', 'action' => 'search'];
-                        $path = 'application\controllers\MainController';
-                        $class = new $path($this->routes);
-                        $class->searchAction($q[1]);
-                        break;
-                    case '?i':
-                        $this->routes = ['controller' => 'main', 'action' =>'item'];
-                        $path = 'application\controllers\MainController';
-                        $class= new $path($this->routes);
-                        $class->ItemAction($q[1]);
-                        break;
-                    case '?p':
-                        $this->routes = ['controller' => 'main', 'action' => 'profile_look'];
-                        $path = 'application\controllers\MainController';
-                        $class = new $path($this->routes);
-                        $class->profile_lookAction($q[1]);
-                        
-                        break;
-                    default:
-                        View::errorCode(404);
-                        break;
-                }
-            }else{
+                if ($q[1] != "") {
+                    switch ($q[0]) {
+                        case '?q':
+                            $this->routes = ['controller' => 'main', 'action' => 'search'];
+                            $path = 'application\controllers\MainController';
+                            $class = new $path($this->routes);
+                            $class->searchAction($q[1]);
+                            break;
+                        case '?i':
+                            $this->routes = ['controller' => 'main', 'action' => 'item'];
+                            $path = 'application\controllers\MainController';
+                            $class = new $path($this->routes);
+                            $class->ItemAction($q[1]);
+                            break;
+                        case '?p':
+                            $this->routes = ['controller' => 'main', 'action' => 'profile_look'];
+                            $path = 'application\controllers\MainController';
+                            $class = new $path($this->routes);
+                            $class->profile_lookAction($q[1]);
+
+                            break;
+                        default:
+                            View::errorCode(404);
+                            break;
+                    }
+                } else {View::return_req();}
+            } else {
                 View::errorCode(404);
             }
         }
+        setcookie('last-page', $_SERVER['REQUEST_URI'], 0, 'webalizer', 'webalizer');
     }
 }

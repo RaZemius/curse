@@ -2,8 +2,10 @@ remove table users;
 remove table customers;
 remove table items;
 remove table tokens;
-begin transaction;
+remove table chats;
+remove table votes;
 
+begin transaction;
 define table users schemafull;
 define field nick on table users type string;
 define field password on table users type string;
@@ -44,8 +46,6 @@ define field time on table tokens;
 define field user on table tokens;
 define field endtime on table tokens;
 
-
-
 define table chats schemafull;
 define field message on table chats;
 define field adress on table chats;
@@ -53,8 +53,8 @@ define field writer on table chats;
 define field w_read on table chats type bool;
 define field r_read on table chats type bool;
 
-
 COMMIT TRANSACTION;
+
 begin transaction;
 create users:razem set nick = 'raz', password = '12345', email = 'df260704@gmail.com';
 create users:rakot set nick = 'aboba', password = '614342', email = 'blackhole@mail.ru';
@@ -67,5 +67,3 @@ COMMIT transaction;
 begin transaction;
 create customers:1 set customer= 'users:razem', adress = 'генерало белова дом 19', executor = users:rakot, reg_time = time::now(), item = [items:susmongus, items:coackroach];
 COMMIT transaction;
-
-select item from customers;

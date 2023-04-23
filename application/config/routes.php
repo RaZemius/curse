@@ -62,6 +62,11 @@ return [
 		'controller'=>'',
 		'action'=>''
 	],
+
+	'/data/update/vote' => [
+		'controller' => 'datareq',
+		'action' => 'votes'
+	],
 	
 	'/data/runquery'=>[
 		'controller'=>'datareq',

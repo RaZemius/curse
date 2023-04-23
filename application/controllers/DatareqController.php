@@ -78,6 +78,7 @@ class DatareqController extends Controller
                 }
 
             }
+            $this->view->return_req();
         } else {
             http_response_code(401);
         }
