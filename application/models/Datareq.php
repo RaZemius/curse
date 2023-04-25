@@ -15,6 +15,15 @@ class Datareq extends Model
     {
         return $this->db->create($str, $arr);
     }
+    public function makevote(&$obj){
+        if(array_key_exists('item', $obj) && array_key_exists('id', $obj) && array_key_exists('value',$obj)){
+            return $this->db->create('votes', $obj);
+        }
+        else{
+            return false;
+        }
+        
+    }
 
     public function create_cart()
     {

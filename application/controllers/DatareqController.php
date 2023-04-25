@@ -83,6 +83,23 @@ class DatareqController extends Controller
             http_response_code(401);
         }
     }
+    public function voteAction()
+    {
+        if (($id = $this->model->Cookiecheck()) != false){
+            if (count($_POST) > 0){
+                $post = $_POST;
+                array_push($post, $id);
+                var_dump($post);
+                if(($res =$this->model->makevote($post)) != false){
+                    http_response_code(201);
+                }else {
+                //http_response_code(400);
+                }
+            }
+        } else {
+            http_response_code(401);
+        }
+    }
 
 
 

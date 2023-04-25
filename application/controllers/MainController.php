@@ -28,10 +28,11 @@ class MainController extends Controller
     }
     function ItemAction($id)
     {
+        $token = $this->model->Cookiecheck();
         $data = $this->model->getItem($id);
         $user = $this->model->getUser($data['author']);
         $user['id'] = explode(':', $user['id'])[1];
-        $this->view->render($data['name'], ['data' =>$data, 'user'=>$user], 'item');
+        $this->view->render($data['name'], ['data' =>$data, 'user'=>$user, 'token'=>$token], 'item');
     }
     function profile_lookAction($id)
     {
@@ -39,7 +40,7 @@ class MainController extends Controller
         $data = $this->model->getUser($id);
         $items = $this->model->getItemsOf($id);
         if ($this->model->Cookiecheck() == $id){
-            $this->view->redirect(Config::$appConfig['root_url'].'profile');
+            $this->view->redirect('profile');
         }
         $this->view->render($data['nick'], ['data' => $data, 'items' => $items], 'profileitem');
     }

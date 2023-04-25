@@ -4,7 +4,8 @@
 <head>
     <?php
 
-    use application\lib\styles;
+use application\core\View;
+use application\lib\styles;
     use application\lib\Config;
 
     styles::get('style');
@@ -41,7 +42,14 @@
             <?php
             styles::setProfImg($user['id']);
             styles::setlink('?p=' . $user['id'], $user['nick']);
-
+            echo '</br>';
+            if ($token != false){
+                echo '<script>adress = "'.Config::$appConfig['root_url'].'data/create/vote"</script>';
+                echo '<form class = new-comment id= form onsubmit="post()">aaa</form>';
+                styles::setjs('create_vote');
+            } else{
+                echo 'you have no access to this';
+            }
             $str = '<div class = comments>';
             if (count($data['votes']) > 0) {
                 $len = 0;
@@ -49,7 +57,10 @@
                 foreach ($data['votes'] as $val) {
                     $mid += $val['value'];
                     if (array_key_exists('comment', $val)) {
-                        $str .= '<p>user ' . explode(':',$val['user'])[1] . '</p><p>' . $val['comment'] . '</p>';
+                        $str .= '<div class = item><div class = item-body >'.styles::setProfImg(explode(':', $val['user'])[1], true, true)
+                        .'<div class = item-text><p>user ' . explode(':',$val['user'])[1] . '</p>
+                        <p>value of comment '.$val['value'].'</p></div></div>
+                       <p>' . $val['comment'] . '</p></div>';
                     }
                     $len++;
                 }
@@ -58,7 +69,7 @@
             } else {
                 echo 'looks like nobody voted yet';
             }
-            echo $str ;
+            echo $str.'</div>' ;
             ?>
         </div>
     </div>

@@ -10,9 +10,15 @@ class styles
     {
         echo '<link rel="stylesheet" href="' . Config::$appConfig['root_url'] . 'public/styles/' . $name . '.css">';
     }
-    static public function setlink($page, $text)
+    static public function setlink($page, $text, $sting = false)
     {
-        echo '<a href ="' . Config::$appConfig['root_url'] . $page . '">' . $text . '</a>';
+        $str =
+        '<a href ="' . Config::$appConfig['root_url'] . $page . '">' . $text . '</a>';
+        if (!$sting) {
+            echo $str;
+        }else{
+            return $str;
+        }
     }
     static public function setimg($id, $ret = false)
     {
@@ -54,7 +60,7 @@ class styles
             $val = '<div class = profimg-con><img class = "profimg" src = "' . Config::$appConfig['root_url'] . 'public/images/profiles/default.jpg"></img></div>';
         }
         if ($text == false) {
-
+            #здесь баг починить. нет линка при вызове через текст нежели echo
             if ($link == true) {
                 styles::setlink('?p=' . $id, $val);
             } else {

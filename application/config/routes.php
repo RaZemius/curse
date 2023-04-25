@@ -53,6 +53,11 @@ return [
 		'action'=>'citem'
 	],
 
+	'/data/create/vote' => [
+		'controller' => 'datareq',
+		'action' => 'vote'
+	],
+	
 	'/data/create/user'=>[
 		'controller'=>'datareq',
 		'action'=>'newuser'

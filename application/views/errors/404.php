@@ -6,7 +6,9 @@
         <p>ops looks like this page are not exist</p>
         <a href="<?php
 
-                    use application\lib\Config; echo Config::$appConfig['root_url']?>">do you want to go to main?</a>
+                    use application\lib\Config;
+
+                    echo Config::$appConfig['root_url'] ?>">do you want to go to main?</a>
     </div>
     <img class="aaa" src="<?php
 

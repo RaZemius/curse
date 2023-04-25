@@ -18,3 +18,19 @@ img{
     max-width: none;
     max-height: none;
 }
+.item{
+    margin-top: 20px;
+}
+.item-body{
+    display: flex;
+
+}
+.item-text{
+    display: flex;
+    flex-flow: column;
+}
+p{
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 4px;
+}

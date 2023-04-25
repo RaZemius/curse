@@ -91,7 +91,6 @@ class Router
                             $path = 'application\controllers\MainController';
                             $class = new $path($this->routes);
                             $class->profile_lookAction($q[1]);
-
                             break;
                         default:
                             View::errorCode(404);

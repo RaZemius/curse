@@ -20,7 +20,7 @@ class AccountController extends Controller
                 $this->view->errorCode(404);
             }
         } else {
-            $this->view->redirect(Config::$appConfig['root_url'] . 'login');
+            $this->view->redirect('login');
         }
     }
     function settingsAction()
@@ -29,7 +29,7 @@ class AccountController extends Controller
             $data = $this->model->get_user($id);
             $this->view->render('настройки', ['data' => $data], 'profile');
         } else {
-            $this->view->redirect(Config::$appConfig['root_url'] . 'login');
+            $this->view->redirect('login');
         }
     }
 
@@ -41,7 +41,7 @@ class AccountController extends Controller
             $list = $this->model->getarraydata($data['item']);
             $this->view->render('корзина', ['cart' => $data, 'list' => $list], 'profile');
         } else {
-            $this->view->redirect(Config::$appConfig['root_url'] . 'login');
+            $this->view->redirect('login');
         }
     }
     public function chatsAction()
@@ -50,7 +50,7 @@ class AccountController extends Controller
             $data =
                 $this->view->render('чаты', [], 'profile');
         } else {
-            $this->view->redirect(Config::$appConfig['root_url'] . 'login');
+            $this->view->redirect('login');
         }
     }
 
@@ -60,7 +60,7 @@ class AccountController extends Controller
     function loginAction()
     {
         if ($this->model->Cookiecheck() != false) {
-            $this->view->redirect(Config::$appConfig['root_url']);
+            $this->view->redirect('');
         } else if (array_key_exists('login', $_POST) == true && array_key_exists('pass', $_POST) == true) {
             if (array_key_exists('email', $_POST) == true && array_key_exists('repeat', $_POST) && array_key_exists('register', $_POST) && $_POST['repeat'] == $_POST['pass']) {
 
@@ -69,7 +69,7 @@ class AccountController extends Controller
                     $res = $this->model->setToken($id);
                     setcookie('user', $id, 0, '/');
                     setcookie('token', $res, time() + 3600, '/');
-                    $this->view->redirect(Config::$appConfig['root_url'] . 'profile');
+                    $this->view->redirect('profile');
                 } else {
                     echo 'user exist already';
                 }
@@ -79,7 +79,7 @@ class AccountController extends Controller
                     $res = $this->model->setToken($id);
                     setcookie('user', $id, 0, '/');
                     setcookie('token', $res, time() + 3600, '/');
-                    $this->view->redirect(Config::$appConfig['root_url'] . 'profile');
+                    $this->view->redirect('profile');
                 } else {
                     echo 'no such combo';
                 }
@@ -94,9 +94,9 @@ class AccountController extends Controller
             setcookie('user', null, -1, '/');
             setcookie('token', null, -1, '/');
             $this->model->deltoken($id);
-            $this->view->redirect(Config::$appConfig['root_url']);
+            $this->view->redirect('');
         } else {
-            $this->view->redirect(Config::$appConfig['root_url']);
+            $this->view->redirect('');
         }
     }
     function createAction()
@@ -104,7 +104,7 @@ class AccountController extends Controller
         if (($id = $this->model->Cookiecheck()) != false) {
             $this->view->render('creating an item', ['user' => $id], 'profile');
         } else {
-            $this->view->redirect(Config::$appConfig['root_url']);
+            $this->view->redirect('');
         }
     }
 }
