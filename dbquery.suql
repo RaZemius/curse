@@ -10,8 +10,6 @@ define table users schemafull;
 define field nick on table users type string;
 define field password on table users type string;
 define field email on table users type string;
-define field json on table users type string;
-define field img on table users type string;
 define field description on table users type string;
 define index y on table users fields email unique;
 define index x on table users fields nick unique;
@@ -46,6 +44,7 @@ define field time on table tokens;
 define field user on table tokens;
 define field endtime on table tokens;
 
+#не действительный код пока оставлю
 define table chats schemafull;
 define field message on table chats;
 define field adress on table chats;

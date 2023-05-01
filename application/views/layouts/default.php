@@ -30,10 +30,7 @@
 
 
 			?>
-			<div class="top-menu">
-				<li class="active">ABOUT US</li>
-
-			</div>
+			<button id = cart-buy>buy all</button>
 	</div>
 	<div class=main>
 		<?php echo $content; ?>

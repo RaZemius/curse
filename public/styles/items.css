@@ -1,19 +1,39 @@
-.items{
+.items {
     display: flex;
     flex-flow: row;
     flex-wrap: wrap;
 
 }
-.item{
+
+.item {
     background-color: rgb(20, 20, 20);
     margin: 10px;
     height: max-content;
+    max-width: 250px;
+}
+
+#item-box {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+}
+#item-name{
+    text-align: center;
+}
+p{
+    margin: 1px;
+}
+img{
+    max-width: 200px;
+    max-height: 250px;
+    overflow: hidden;
 }
 .names {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
+
 .link {
     width: fit-content;
     height: fit-content;

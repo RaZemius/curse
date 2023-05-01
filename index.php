@@ -14,5 +14,13 @@ $router->run();
             echo '<a>'.$th->getMessage().'</a></br>';
             echo '<a>'.$th->getFile().'</a>';
             echo '<a>'.$th->getLine().'</a>';
-            echo '<p>'.$th->getTraceAsString().'</p>';
+            $var = explode('#', $th->getTraceAsString());
+            foreach ($var as $key => $value) {
+                echo explode(Config::$appConfig['path'],$value)[1].'<br>';
+            }
+            /*
+            $var = $th->getTrace();
+            foreach ($var as $key => $value) {
+                echo $value['file'].'<br>';
+            }*/
         }

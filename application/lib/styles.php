@@ -89,12 +89,17 @@ class styles
             } else {
                 $str .= '<div class = item>';
             }
+
+
             $str .= styles::setimg(explode(':', $key['id'])[1], true);
-            unset($key['id'], $key['author'], $key['description']);
-            $str .= '<div class = names>';
-            foreach ($key as $part) {
-                $str .= '<p>' . $part . '</p>';
-            }
+            unset($key['id'], $key['description']);
+            $str .= '<p id = item-name>'.$key['name'].'</p>';
+            $str.= '<div id = item-box>';
+            $str .= 
+            '<p>'.$key['value'].'</p>
+            <p>'.$key['author']['nick'].'</p>';
+
+
             $str .= '</div>';
             if ($link != false) {
                 $str .= '</a>';

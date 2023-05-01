@@ -12,10 +12,10 @@ class Account extends Model
     // }
     public function get_user($id)
     {
-        return $this->db->query('SELECT nick, id, json from users where id = "'.$id.'"')[0]['result'][0];
+        return $this->db->query('SELECT * from users where id = "'.$id.'"')[0]['result'][0];
     }
     public function get_user_items($id){
-        return $this->db->query('select * from items where author = "'.$id.'"')[0]['result'];
+        return $this->db->query('select *, author.* from items where author = "'.$id.'"')[0]['result'];
     }
     public function get_settings($user_id){
         return $this->db->query('select json from users where id="'.$user_id.'"');
@@ -28,7 +28,7 @@ class Account extends Model
     }
     public function getarraydata(array $pointers_array)
     {
-        $query = 'select value, author, name, id, author.nick from ';
+        $query = 'select * from ';
         $size = count($pointers_array);
         for ($i=0; $i < $size; $i++) { 
             $query = $query.$pointers_array[$i];
@@ -42,7 +42,7 @@ class Account extends Model
         $data= $this->db->query('select * from customers where customer = "'.$id.'"');
 
         if(array_key_exists(0, $data[0]['result']) ){
-            return $data[0]['result'][0];
+            return $data[0]['result'];
         } else {
             return false;
         }

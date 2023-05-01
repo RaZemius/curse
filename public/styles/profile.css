@@ -1,4 +1,12 @@
-
+.profimg {
+    width: max-content;
+    height: max-content;
+    border-radius: 5%;
+}
+.but, p{margin-block-start: 0;
+    margin: 0;
+    display: inline;
+}
 html{
     height: 100%;
 }
@@ -25,22 +33,27 @@ p, a{
     margin: 0;
 }
 .big{
+    padding: 10px;
     grid-column: 3/-2;
     grid-row: 1/-1;
-    height: 100%; 
+    height: 100%-10px; 
     background-color: rgb(0, 0, 0);
     display: flex;
     flex-flow: column;
-    overflow: scroll;
+    overflow:auto ;
 }
 .menu{
     grid-column: 1/-2;
     grid-row: 1/-1;
     display: flex;
     flex-flow: column;
+
     justify-content: flex-start;
 }
-
+.user{
+    display: flex;
+    flex-flow: row;
+}
 @media (max-width: 900px) {
     .big{
         grid-column: 1/-1;

@@ -25,8 +25,18 @@ class Datareq extends Model
         
     }
 
-    public function create_cart()
+    public function create_cart(&$items, &$full_uid)
     {
+        $str = '';
+        $len =count($items);
+        for ($i=0; $i < $len; $i++) { 
+            $str .= '"'.$items[$i].'"';
+            if($i != $len)
+            {
+                $str .= ',';
+            }
+        }
+        return $this->db->query('create customers set customer = "'.$full_uid.'", reg_time = time::now(), item = ['.$str.']')[0]['result'][0];
     }
     public function run($str)
     {

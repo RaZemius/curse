@@ -38,7 +38,11 @@ class AccountController extends Controller
         if (($id = $this->model->Cookiecheck()) != false) {
             $list = null;
             $data = $this->model->getcart($id);
-            $list = $this->model->getarraydata($data['item']);
+            $len = count($data);
+            for ($i=0; $i < $len; $i++) { 
+                $data[$i]['item'] = $this->model->getarraydata($data[$i]['item']);
+            }
+            
             $this->view->render('корзина', ['cart' => $data, 'list' => $list], 'profile');
         } else {
             $this->view->redirect('login');

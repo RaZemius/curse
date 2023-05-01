@@ -13,12 +13,13 @@ echo '<script> let path = "' . Config::$appConfig['root_url'] . 'data/create/ite
 
 ?>
 <form name='panic' onsubmit="run(this);return false;">
-    <input type="text" name="name" id="" placeholder="name of item" class=form>
-    <input type="text" name="description" id="huge" placeholder="any description" class=form>
+    <input type="text" name="name" id="" placeholder="name of item" class=form required>
+
+    <textarea name="description" id="huge" class="form" placeholder= "any descriptiom"></textarea>
     <input type="text" name='tags' placeholder="tags separate with #" class=form>
-    <input type="text" name="value" class=form>
-    <input type="file" name="img" class = form>
-    <input type="submit" value="item" class=form>
+    <input type="text" name="value" placeholder="value of item" class=form required>
+    <input type="file" name="img" class=form>
+    <input type="submit" value="create" class="form create">
 
 </form>
 <?php

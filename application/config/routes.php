@@ -24,10 +24,6 @@ return [
 		'controller' => 'account',
 		'action' => 'index'
 	],
-	'/profile/bucket'=>[
-		'controller'=>'account',
-		'action'=>'bucket'
-	],
 	'/profile/settings'=>[
 		'controller'=>'account',
 		'action'=>'settings'
@@ -40,6 +36,17 @@ return [
 		'controller'=>'account',
 		'action'=>'cart'
 	],
+	'/profile/story' => [
+		'controller' => 'account',
+		'action' => 'cart'
+	],
+	'/profile/chats' => [
+		'controller' => 'account',
+		'action' => 'chats'
+	],
+
+
+
 	'/data/req/'=>[
 		'controller'=>'account',
 		'action'=>'req_cart'
@@ -52,16 +59,20 @@ return [
 		'controller'=>'datareq',
 		'action'=>'citem'
 	],
-
 	'/data/create/vote' => [
 		'controller' => 'datareq',
 		'action' => 'vote'
+	],
+	'/data/create/cart'=>[
+		'controller'=>'datareq',
+		'action'=>'cart'
 	],
 	
 	'/data/create/user'=>[
 		'controller'=>'datareq',
 		'action'=>'newuser'
 	],
+
 	
 	'/data/update/'=>[
 		'controller'=>'',
@@ -76,16 +87,8 @@ return [
 	'/data/runquery'=>[
 		'controller'=>'datareq',
 		'action'=>'sudb'
-	],
-	
-	'/profile/story' => [
-		'controller' => 'account',
-		'action' => 'cart'
-	],
-	'/profile/chats' => [
-		'controller' => 'account',
-		'action' => 'chats'
 	]
+	
 ];
 ?>
 	''=>[

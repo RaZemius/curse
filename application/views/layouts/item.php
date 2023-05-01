@@ -42,7 +42,7 @@ use application\lib\styles;
             <?php
             styles::setProfImg($user['id']);
             styles::setlink('?p=' . $user['id'], $user['nick']);
-            echo '</br>';
+            echo '<button id="cart-add" value ="' . $data['id'] . '">buy this</button>';
             if ($token != false){
                 echo '<script>adress = "'.Config::$appConfig['root_url'].'data/create/vote"</script>';
                 echo '<form class = new-comment id= form onsubmit="post()">aaa</form>';
@@ -69,7 +69,8 @@ use application\lib\styles;
             } else {
                 echo 'looks like nobody voted yet';
             }
-            echo $str.'</div>' ;
+            echo $str.'</div>';
+            styles::setjs('carthandler');
             ?>
         </div>
     </div>

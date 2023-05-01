@@ -1,19 +1,27 @@
-<?php use application\lib\styles;
+<?php
+
+use application\lib\styles;
 use application\lib\Config;
 
-if ($list != false) {
-    /*
-	echo '<div class = items>';
-    foreach ($list as $post) {
-        echo '<a class = link href="' . Config::$appConfig['root_url'] . '?i=' . explode('items:', $post['id'])[1] . '">';
-        echo "<div class='item'>";
-        echo '<p>' . $post["name"] . '</p>' . '<div class=imgcon>' . styles::setimg(explode('items:', $post['id'])[1]) . '</div>';
-        echo '<p>' . $post["value"] . '</p>';
-        echo '<p>author ' . $post["author"] . '</p>';
-        echo '</div>';
-        echo '</a>';
+if ($cart != false) {
+    $str = '';
+    $str .= '<div class = cart>';
+    foreach ($cart as $list) {
+        $str.='<div class = items>';
+
+        foreach ($list['item'] as $post) {
+            $str .= '<a class = link href="' . Config::$appConfig['root_url'] . '?i=' . explode('items:', $post['id'])[1] . '">';
+            $str .= "<div class='item'>";
+            $str .= '<p>' . $post["name"] . '</p>' . '<div class=imgcon>' . styles::setimg(explode('items:', $post['id'])[1], true) . '</div>';
+            $str .= '<p>' . $post["value"] . '</p>';
+            $str .= '<p>author ' . $post["author"] . '</p>';
+            $str .= '</div>';
+            $str .= '</a>';
+        }
+        $str.='</div>';
     }
-	echo '</div>';*/
+    $str .= '</div>';
 } else {
-    echo 'its fully empty';
+    $str .= 'its fully empty';
 }
+echo $str;

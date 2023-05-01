@@ -9,9 +9,9 @@
 
     styles::get('style');
     styles::get('items');
-    styles::get('smal_img');
-    
+
     styles::get('profile');
+    styles::get('smal_img');
     styles::get('buttons');
     ?>
 </head>

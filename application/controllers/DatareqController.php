@@ -4,6 +4,7 @@ namespace application\controllers;
 
 use application\core\Controller;
 use application\lib\Config;
+
 class DatareqController extends Controller
 {
     //this module extends data transmision between js and php for limited access to db entries
@@ -34,7 +35,7 @@ class DatareqController extends Controller
         $data = file_get_contents('dbquery.suql');
         if ($data != false) {
             $this->model->run($data);
-            $this->view->redirect(Config::$appConfig['root_url']);
+            $this->view->redirect('');
         } else {
             echo 'error somewhere in code no return data';
         }
@@ -45,59 +46,50 @@ class DatareqController extends Controller
 
             if (count($_POST) > 0) {
                 $post = $_POST;
-                if (assert($post['tags']))
-                {$post['tags'] = explode(', ', $post['tags']);}
-                $str = 'create items set ';
-                $str = $str.json_encode($post);
-                /*foreach ($_POST as $key => $val){
-                    if (str_contains($val, ','))
-                    {
-                        $arr = explode(', ', $val);
-                        $str = $str.$key.' = '.json_encode($arr).',';
-                    }
-                    else
-                    {$str = $str.$key.'="'.$val.'",';}
-                }
-                $str = preg_replace('/,.?$/', '', $str);
-                */
-                
-                try{
+                $post['author'] = $id;
+                try {
                     $item = $this->model->create_item('items', $post)[0];
-                }
-                catch(\Throwable $th) {
+                    echo json_encode($item);
+                } catch (\Throwable $th) {
                     http_response_code(503);
                     echo 'database error, this item with this name already exist';
                     die();
                 }
                 if (($file = $this->fileimport($item['id'])) != false) {
-                    echo $a = explode(':', $item['id'])[1];
+                    echo explode(':', $item['id'])[1];
                     //$this->view->redirect(Config::$appConfig['root_url'].'?i=' . $a[1]);
                 } else {
                     http_response_code(207);
                     echo 'upload error';
                 }
-
             }
-            $this->view->return_req();
+            //$this->view->return_req();
         } else {
             http_response_code(401);
         }
     }
     public function voteAction()
     {
-        if (($id = $this->model->Cookiecheck()) != false){
-            if (count($_POST) > 0){
+        if (($id = $this->model->Cookiecheck()) != false) {
+            if (count($_POST) > 0) {
                 $post = $_POST;
                 array_push($post, $id);
-                var_dump($post);
-                if(($res =$this->model->makevote($post)) != false){
+                if (($res = $this->model->makevote($post)) != false) {
                     http_response_code(201);
-                }else {
-                //http_response_code(400);
+                } else {
                 }
             }
         } else {
             http_response_code(401);
+        }
+    }
+    public function cartAction()
+    {
+        $json = file_get_contents('php://input');
+        $json = json_decode($json);
+        if (($id = $this->model->Cookiecheck()) != false && count($json) > 0) {
+            $res = $this->model->create_cart($json, $id);
+            echo json_encode($res);
         }
     }
 
@@ -116,7 +108,6 @@ class DatareqController extends Controller
             if ($check !== false) {
                 echo "File is an image - " . $check["mime"] . ".";
                 $uploadOk = 1;
-
             } else {
                 echo "File is not an image.";
                 $uploadOk = 0;
@@ -152,7 +143,7 @@ class DatareqController extends Controller
         } else {
             if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
                 $hm = $target_dir . explode(':', $token)[1] . '.' . $imageFileType;
-                rename($target_file,$hm);
+                rename($target_file, $hm);
                 return $hm; //echo "The file " . htmlspecialchars(basename($_FILES["img"]["name"])) . " has been uploaded.";
             } else {
                 echo $target_file;
