@@ -3,9 +3,6 @@
 namespace application\controllers;
 
 use application\core\Controller;
-use application\core\View;
-use application\lib\Config;
-use application\lib\Debug;
 
 class MainController extends Controller
 {
