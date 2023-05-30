@@ -1,35 +1,41 @@
-.container{
+.container {
     display: grid;
     grid-template-columns: 80% 20%;
     height: 100%;
-
 }
-.main{
+
+.main {
     padding: 15px;
     grid-column: 1/-2;
-    overflow: scroll;
+    overflow: auto;
 }
-.right{
+
+.right {
     padding: 10px;
-    grid-column: 2/-1;}
-img{
+    grid-column: 2/-1;
+}
+
+img {
     width: 100%;
     height: fit-content;
     max-width: none;
     max-height: none;
 }
-.item{
+
+.item {
     margin-top: 20px;
 }
-.item-body{
-    display: flex;
 
+.item-body {
+    display: flex;
 }
-.item-text{
+
+.item-text {
     display: flex;
     flex-flow: column;
 }
-p{
+
+p {
     margin-top: 2px;
     margin-bottom: 2px;
     margin-left: 4px;

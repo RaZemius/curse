@@ -22,19 +22,19 @@
       <div class="form-fields">
         <form method="post" action="">
           <div class="form-field">
-            <input type="text" name="login" placeholder="ник или почта" required>
+            <input type="text" name="login" id = "login"placeholder="ник или почта" required>
           </div>
           <div class="form-field reg">
-            <input type="text" name="email" placeholder="Почта">
+            <input type="text" name="email" id = "email" placeholder="Почта">
           </div>
           <div class="form-field">
-            <input type="text" name="pass" placeholder="Пароль" required>
+            <input type="text" name="pass" id="pass" placeholder="Пароль" required>
           </div>
           <div class="form-field reg">
-            <input type="text" name= "repeat" placeholder="Повторите пароль">
+            <input type="text" name= "repeat" id = "repeat"placeholder="Повторите пароль">
           </div>
           <div class="form-buttons">
-            <input type="submit" class="button" name="enter">
+            <input type="submit" value = "войти" class="button" id = "submit"name="enter">
           </div>
         </form>
 

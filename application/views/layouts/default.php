@@ -17,20 +17,20 @@
 <body>
 
 	<div class="top">
-		<a href="<?php echo Config::$appConfig['root_url'] ?>"><button>main page</button></a>
+		<a href="<?php echo Config::$appConfig['root_url'] ?>"><button>на главную</button></a>
 			<form name="search" action="#" method="get" class=toptext>
-				<input type="text" name="q" placeholder="Search" class=toptext><button class=toptext type="submit">GO</button>
+				<input type="text" name="q" placeholder="Search" class=toptext><button class=toptext type="submit">найти</button>
 			</form>
 			<?php if ($user == false) {
-				styles::setlink('login', '<button class = toptext>registration</button>');
+				styles::setlink('login', '<button class = toptext>регистрация</button>');
 			} else {
-				styles::setlink('profile', "<button class = toptext>HOME</button>");
+				styles::setlink('profile', "<button class = toptext>профиль</button>");
 			}
 
 
 
 			?>
-			<button id = cart-buy>buy all</button>
+			<button id = cart-buy>купиииить</button>
 	</div>
 	<div class=main>
 		<?php echo $content; ?>

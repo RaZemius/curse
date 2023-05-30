@@ -39,7 +39,7 @@ class Account extends Model
     }
     public function getcart($id)
     {
-        $data= $this->db->query('select * from customers where customer = "'.$id.'"');
+        $data= $this->db->query('select * from cart where customer = "'.$id.'"');
 
         if(array_key_exists(0, $data[0]['result']) ){
             return $data[0]['result'];

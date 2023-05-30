@@ -31,10 +31,10 @@
         echo $data['time'];
     }
     if(count($items) >0){
-        echo '<p>'.$data['nick'].' created this items</p>';
+        echo '<p>'.$data['nick'].' создал этот предмет</p>';
         echo styles::genitems($items, true);
     } else{
-        echo '<p>no items have been created</p>';
+        echo '<p>не содавал еще ничего</p>';
     }
     ?>
     </div>

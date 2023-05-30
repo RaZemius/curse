@@ -14,7 +14,7 @@ if ($cart != false) {
             $str .= "<div class='item'>";
             $str .= '<p>' . $post["name"] . '</p>' . '<div class=imgcon>' . styles::setimg(explode('items:', $post['id'])[1], true) . '</div>';
             $str .= '<p>' . $post["value"] . '</p>';
-            $str .= '<p>author ' . $post["author"] . '</p>';
+            $str .= '<p>автор ' . $post["author"] . '</p>';
             $str .= '</div>';
             $str .= '</a>';
         }
@@ -22,6 +22,6 @@ if ($cart != false) {
     }
     $str .= '</div>';
 } else {
-    $str .= 'its fully empty';
+    $str .= 'пусто';
 }
 echo $str;

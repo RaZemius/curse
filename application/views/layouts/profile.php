@@ -23,13 +23,13 @@
         </div>
         <div class=menu>
 
-            <div class=but><?php styles::setlink('', 'go back to main') ?></div>
-            <div class=but><?php styles::setlink('profile', 'page') ?></div>
-            <div class=but><?php styles::setlink('profile/create', 'create') ?></div>
-            <div class=but><?php styles::setlink('profile/chats', 'chats') ?></div>
-            <div class=but><?php styles::setlink('profile/story', 'cart'); ?></div>
-            <div class=but><?php styles::setlink('profile/settings', 'settings') ?></div>
-            <div class=but><?php styles::setlink('profile/exit', 'exit') ?></div>
+            <div class=but><?php styles::setlink('', 'на главную') ?></div>
+            <div class=but><?php styles::setlink('profile', 'профиль') ?></div>
+            <div class=but><?php styles::setlink('profile/create', 'добавить') ?></div>
+            <div class=but><?php styles::setlink('profile/chats', '<s>чаты</s>') ?></div>
+            <div class=but><?php styles::setlink('profile/story', 'корзина'); ?></div>
+            <div class=but><?php styles::setlink('profile/settings', '<s>настройки</s>') ?></div>
+            <div class=but><?php styles::setlink('profile/exit', 'выход') ?></div>
         </div>
     </section>
     <script>

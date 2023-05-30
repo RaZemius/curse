@@ -31,7 +31,7 @@ use application\lib\styles;
                 }
                 $str .= '</div>';
             } else {
-                $str = '<div class = tag>no tags</div>';
+                $str = '<div class = tag>без тэгов</div>';
             }
             echo $str;
             echo '<p>' . $data['description'] . '</p>';
@@ -48,7 +48,7 @@ use application\lib\styles;
                 echo '<form class = new-comment id= form onsubmit="post()">aaa</form>';
                 styles::setjs('create_vote');
             } else{
-                echo 'you have no access to this';
+                echo 'зарегестрируйтесь чтоб оставлять коментарии';
             }
             $str = '<div class = comments>';
             if (count($data['votes']) > 0) {
@@ -59,7 +59,7 @@ use application\lib\styles;
                     if (array_key_exists('comment', $val)) {
                         $str .= '<div class = item><div class = item-body >'.styles::setProfImg(explode(':', $val['user'])[1], true, true)
                         .'<div class = item-text><p>user ' . explode(':',$val['user'])[1] . '</p>
-                        <p>value of comment '.$val['value'].'</p></div></div>
+                        <p>оценка: '.$val['value'].'</p></div></div>
                        <p>' . $val['comment'] . '</p></div>';
                     }
                     $len++;
